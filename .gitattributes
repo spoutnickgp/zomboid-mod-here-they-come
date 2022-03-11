@@ -1,0 +1,4 @@
+* text=false
+*.ogg filter=lfs diff=lfs merge=lfs -text
+*.x filter=lfs diff=lfs merge=lfs -text
+*.fbx filter=lfs diff=lfs merge=lfs -text

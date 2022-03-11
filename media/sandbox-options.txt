@@ -1,0 +1,157 @@
+VERSION = 1,
+
+option HereTheyCome.HordeCooldown
+{
+	type = integer,
+	min = 10,
+	max = 72000,
+	default = 2880,
+	page = ZombieAdvanced,
+	translation = HTC_HordeCooldown,
+}
+
+option HereTheyCome.HordeMinHour
+{
+	type = integer,
+	min = 0,
+	max = 23,
+	default = 0,
+	page = ZombieAdvanced,
+	translation = HTC_HordeMinHour,
+}
+
+option HereTheyCome.HordeMaxHour
+{
+	type = integer,
+	min = 0,
+	max = 23,
+	default = 22,
+	page = ZombieAdvanced,
+	translation = HTC_HereTheyComeMaxHour,
+}
+
+option HereTheyCome.HordeMinHourlyProgress
+{
+    type = integer,
+    min = 0,
+    max = 10000,
+    default = 0,
+    page = ZombieAdvanced,
+    translation = HTC_HordeMinHourlyProgress,
+}
+
+option HereTheyCome.HordeMaxHourlyProgress
+{
+    type = integer,
+    min = 0,
+    max = 10000,
+    default = 5,
+    page = ZombieAdvanced,
+    translation = HTC_HordeMaxHourlyProgress,
+}
+
+option HereTheyCome.HordeTriggerThreshold
+{
+    type = integer,
+    min = 0,
+    max = 10000,
+    default = 1000,
+    page = ZombieAdvanced,
+    translation = HTC_HordeTriggerThreshold,
+}
+
+option HereTheyCome.HordeFirstDay
+{
+	type = integer,
+	min = 0,
+	max = 365,
+	default = 10,
+	page = ZombieAdvanced,
+	translation = HTC_HordeFirstDay,
+}
+
+option HereTheyCome.HordeMinZombieCount
+{
+	type = integer,
+	min = 1,
+	max = 7200,
+	default = 100,
+	page = ZombieAdvanced,
+	translation = HTC_HordeMinZombieCount,
+}
+
+option HereTheyCome.HordeMaxZombieCount
+{
+	type = integer,
+	min = 0,
+	max = 7200,
+	default = 800,
+	page = ZombieAdvanced,
+	translation = HTC_HordeMaxZombieCount,
+}
+
+option HereTheyCome.HordeZombieIncrement
+{
+	type = integer,
+	min = 0,
+	max = 1000,
+	default = 50,
+	page = ZombieAdvanced,
+	translation = HTC_HordeZombieIncrement,
+}
+
+option HereTheyCome.HordeZombieSpawnRate
+{
+	type = integer,
+	min = 1,
+	max = 100,
+	default = 25,
+	page = ZombieAdvanced,
+	translation = HTC_HordeZombieSpawnRate,
+}
+
+option HereTheyCome.HordeMinSpawnDistance
+{
+	type = integer,
+	min = 5,
+	max = 150,
+	default = 75,
+	page = ZombieAdvanced,
+	translation = HTC_HordeMinSpawnDistance,
+}
+
+option HereTheyCome.HordeMaxSpawnDistance
+{
+	type = integer,
+	min = 5,
+	max = 150,
+	default = 75,
+	page = ZombieAdvanced,
+	translation = HTC_HordeMaxSpawnDistance,
+}
+
+option HereTheyCome.HordeProgressIndicator
+{
+	type = boolean,
+	default = true,
+	page = ZombieAdvanced,
+	translation = HTC_HordeProgressIndicator,
+}
+
+option HereTheyCome.PulsePlayersDuringHorde
+{
+	type = boolean,
+	default = true,
+	page = ZombieAdvanced,
+	translation = HTC_PulsePlayersDuringHorde,
+}
+
+option HereTheyCome.PulseRange
+{
+	type = integer,
+	min = 5,
+	max = 200,
+	default = 50,
+	page = ZombieAdvanced,
+	translation = HTC_PulseRange,
+}

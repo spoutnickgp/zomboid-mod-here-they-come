@@ -1,0 +1,5 @@
+IGUI_EN = {
+	IGUI_PlayerText_HTCWarning00 = "They caught my scent... Here they come!!!",
+	IGUI_PlayerText_HTCWarning01 = "They must have heard me... Here they come!!!",
+    IGUI_PlayerText_HTCWarning02 = "Achoo... Damn they must have heard me. Here they come!!!"
+}

@@ -1,0 +1,49 @@
+Sandbox_EN = {
+	Sandbox_HTC_HordeCooldown = "Cooldown between hordes"
+	Sandbox_HTC_HordeCooldown_tooltip = "Cooldown between two hordes in game minutes"
+
+	Sandbox_HTC_HordeMinHour = "Min Horde Starting Hour"
+	Sandbox_HTC_HordeMinHour_tooltip = "Min hour of day at which the HordeNight may happen"
+
+	Sandbox_HTC_HordeMaxHour = "Max Horde Starting Hour"
+	Sandbox_HTC_HordeMaxHour_tooltip = "Max hour of day at which the HordeNight may happend""
+
+    Sandbox_HTC_HordeMinHourlyProgress = "Horde accumulator minimum hourly progress"
+    Sandbox_HTC_HordeMinHourlyProgress_tooltip = ""
+
+    Sandbox_HTC_HordeMaxHourlyProgress = "Horde accumulator maximum hourly progress"
+    Sandbox_HTC_HordeMaxHourlyProgress_tooltip = ""
+
+    Sandbox_HTC_HordeTriggerThreshold = "Horde trigger threshold"
+    Sandbox_HTC_HordeTriggerThreshold_tooltip = ""
+
+	Sandbox_HTC_HordeFirstDay = "First day at which a horde may appear"
+	Sandbox_HTC_HordeFirstDay_tooltip = ""
+
+	Sandbox_HTC_HordeMinZombieCount = "Minimum number of zombies per horde"
+	Sandbox_HTC_HordeMinZombieCount_tooltip = ""
+
+	Sandbox_HTC_HordeMaxZombieCount = "Maximum number of zombies per horde"
+	Sandbox_HTC_HordeMaxZombieCount_tooltip = ""
+
+	Sandbox_HTC_HordeZombieIncrement = "Additional number of zombies for each horde"
+	Sandbox_HTC_HordeZombieIncrement_tooltip = ""
+
+	Sandbox_HTC_HordeZombieSpawnRate = "Number of ticks between zombie spawns when horde is active"
+	Sandbox_HTC_HordeZombieSpawnRate_tooltip = ""
+
+	Sandbox_HTC_HordeMinSpawnDistance = "Zombies spawn distance from players"
+	Sandbox_HTC_HordeMinSpawnDistance_tooltip = ""
+
+	Sandbox_HTC_HordeMaxSpawnDistance = "Zombies spawn distance from players"
+	Sandbox_HTC_HordeMaxSpawnDistance_tooltip = ""
+
+	Sandbox_HTC_HordeProgressIndicator = "Horde risk indicator display toggle"
+	Sandbox_HTC_HordeProgressIndicator_tooltip = ""
+
+	Sandbox_HTC_PulsePlayersDuringHorde = "Horde Pulse"
+	Sandbox_HTC_PulsePlayersDuringHorde_tooltip = "Silently pulse and draw zombies to player during Horde"
+
+	Sandbox_HTC_PulseRange = "Horde Pulse Range"
+	Sandbox_HTC_PulseRange_tooltip = "Range of the pulse Pulse pulling zombies to players"
+}
