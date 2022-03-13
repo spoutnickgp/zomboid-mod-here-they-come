@@ -1,5 +1,6 @@
--- local HTC_spawnables = {"AirCrew","AmbulanceDriver","ArmyCamoDesert","ArmyCamoGreen","ArmyServiceUniform","Bandit","BaseballFan_KY","BaseballFan_Rangers","BaseballFan_Z","BaseballPlayer_KY","BaseballPlayer_Rangers","BaseballPlayer_Z","Bathrobe","Bedroom","Biker","Bowling","BoxingBlue","BoxingRed","Camper","Chef","Classy","Cook_Generic","Cook_IceCream","Cook_Spiffos","Cyclist","Doctor","DressLong","DressNormal","DressShort","Farmer","Fireman","FiremanFullSuit","FitnessInstructor","Fossoil","Gas2Go","Generic_Skirt","Generic01","Generic02","Generic03","Generic04","Generic05","GigaMart_Employee","Golfer","HazardSuit","Hobbo","HospitalPatient","Jackie_Jaye","Joan","Jockey04","Jockey05","Kate","Kirsty_Kormick","Mannequin1","Mannequin2","Nurse","OfficeWorkerSkirt","Party","Pharmacist","Police","PoliceState","Postal","PrivateMilitia","Punk","Ranger","Redneck","Rocker","Santa","SantaGreen","ShellSuit_Black","ShellSuit_Blue","ShellSuit_Green","ShellSuit_Pink","ShellSuit_Teal","Ski Spiffo","SportsFan","StreetSports","StripperBlack","StripperPink","Student","Survivalist","Survivalist02","Survivalist03","Swimmer","Teacher","ThunderGas","TinFoilHat","Tourist","Trader","TutorialMom","Varsity","Waiter_Classy","Waiter_Diner","Waiter_Market","Waiter_PileOCrepe","Waiter_PizzaWhirled","Waiter_Restaurant","Waiter_Spiffo","Waiter_TachoDelPancho","WaiterStripper","Young","Bob","ConstructionWorker","Dean","Duke","Fisherman","Frank_Hemingway","Ghillie","Groom","HockeyPsycho","Hunter","Inmate","InmateEscaped","InmateKhaki","Jewelry","Jockey01","Jockey02","Jockey03","Jockey06","John","Judge_Matt_Hass","MallSecurity","Mayor_West_point","McCoys","Mechanic","MetalWorker","OfficeWorker","PokerDealer","PoliceRiot","Priest","PrisonGuard","Rev_Peter_Watts","Raider","Security","Sir_Twiggy","Thug","TutorialDad","Veteran","Waiter_TacoDelPancho","Woodcut"};
-local HTC_spawnables = { "AirCrew" };
+require "HereTheComeConfig"
+require "HereTheComeSpawn"
+
 local HTC_stateKey = "HTC_State"
 
 function HTC_Setup()
@@ -23,20 +24,24 @@ function HTC_isWithinHordeTime()
     local hourOfDay = getGameTime():getHour() % 24
 
     if day >= SandboxVars.HereTheyCome.HordeFirstDay then
-        if hourOfDay >= SandboxVars.HereTheyCome.HordeMinHour and hourOfDay < SandboxVars.HereTheyCome.HordeMaxHour then
+        if hourOfDay >= SandboxVars.HereTheyCome.HordeMinHour and hourOfDay <= SandboxVars.HereTheyCome.HordeMaxHour then
             return true
         end
     end
     return false
 end
 
-function HTC_isHordeCooldown(time)
-    if time == nil then
-        return true
+function HTC_isHordeCooldown(last_end_time)
+    if last_end_time == nil then
+        return false
     end
     local now = HTC_getHoursSinceGameStart() * 60
     print("Last time: " .. tostring(time) .. ", Cooldown:" .. tostring(SandboxVars.HereTheyCome.HordeCooldown) .. ", Now:" .. tostring(now))
-    return time + SandboxVars.HereTheyCome.HordeCooldown < now
+    return last_end_time + SandboxVars.HereTheyCome.HordeCooldown > now
+end
+
+function HTC_isHordePossible(last_end_time)
+    return HTC_isWithinHordeTime() and HTC_isHordeCooldown(last_end_time) == false
 end
 
 local function HTC_startHorde(data, hordeNumber)
@@ -48,17 +53,21 @@ local function HTC_startHorde(data, hordeNumber)
     data.HordeTick = 0;
     data.HordeZombiesRemaining = effectiveHordeZombieCount
 
-    sendServerCommand("HTCmodule", "HTCHordeStart", { })
+    data.HordeAngle = ZombRand(360)
     local players = getOnlinePlayers()
     for i = 1, players:size() do
         local player = players:get(i - 1)
         if player ~= nil then
             local playerLocation = player:getCurrentSquare()
             if playerLocation ~= nil then
-                local zombieOrigin = HTC_getRandomDistancePointFrom(
-                        playerLocation:getX(), playerLocation:getY(),
-                        SandboxVars.HereTheyCome.HordeMinSpawnDistance)
-                HTC_AlarmPlayer(player, zombieOrigin)
+                local hordeOrigin = HTC_getPointOnCircle(playerLocation:getX(), playerLocation:getY(),
+                        hordeAngle, SandboxVars.HereTheyCome.HordeMinSpawnDistance)
+                -- hordeOrigin = getWorld():getCell():getGridSquare(hordeOrigin.x, hordeOrigin.y, 0);
+                print("Sending HTCHordeStart to player @ "..tostring(hordeOrigin))
+                getWorldSoundManager():addSound(player, hordeOrigin.x, hordeOrigin.y, 0, 400, 10);
+                getWorldSoundManager():addSound(player, playerLocation:getX(), playerLocation:getY(), playerLocation:getZ(), 200, 10);
+                -- getSoundManager():PlayWorldSoundWav("event_sound_02", playerLocation, 1.0, 200.0, 100.0, false);
+                sendServerCommand(player, "HTCmodule", "HTCHordeStart", { event_location_X = hordeOrigin.x, event_location_Y = hordeOrigin.y })
             end
         end
     end
@@ -69,27 +78,6 @@ local function HTC_endHorde(data)
     data.HordeActive = false
     data.LastHordeEndTime = HTC_getHoursSinceGameStart() * 60
     sendServerCommand("HTCmodule", "HTCHordeEnd", { })
-end
-
-function HTC_getRandomDistantPointFrom(x, y, distance)
-    local newX = x + ZombRand(2 * distance) - distance;
-    local newY = y + ZombRand(2 * distance) - distance;
-    return getWorld():getCell():getGridSquare(newX, newY, 0);
-end
-
--- When start, alarm everyone online
-function HTC_AlarmPlayer(player, gridSquare)
-    local rAlarmIndex = ZombRand(10);
-    local rAlarmText = "IGUI_PlayerText_HNWarning0" .. tostring(rAlarmIndex);
-    player:Say(getText(rAlarmText));
-    local rAlarmSound = "zombierand" .. tostring(ZombRand(10));
-    -- local rAlarmMusic = "zombierand"..tostring(ZombRand(10));
-    local aZed = getSoundManager():playServerSound(rAlarmSound, gridSquare);
-    getSoundManager():PlayAsMusic(rAlarmSound, aZed, false, 0);
-
-    local playerLocation = player:getCurrentSquare();
-    getWorldSoundManager():addSound(player, playerLocation:getX(), playerLocation:getY(), playerLocation:getZ(), 200, 10);
-    aZed:setVolume(0.1);
 end
 
 function HTC_HordeProgress()
@@ -108,7 +96,8 @@ function HTC_HordeProgress()
     print("Broadcasting HordeState..." .. tostring(params))
     sendServerCommand("HTCmodule", "HTCHordeState", params)
     if data.HordeActive ~= true then
-        if HTC_isWithinHordeTime() and HTC_isHordeCooldown(data.LastHordeEndTime) then
+        if HTC_isHordePossible(data.LastHordeEndTime) then
+            print("Checking horde progress...")
             local randomMargin = SandboxVars.HereTheyCome.HordeMaxHourlyProgress - SandboxVars.HereTheyCome.HordeMinHourlyProgress
             local progress = SandboxVars.HereTheyCome.HordeMinHourlyProgress + ZombRand(randomMargin)
             data.HordeProgress = data.HordeProgress + progress / 60
@@ -128,15 +117,26 @@ function HTC_CheckHordeEligibility()
     end
 
     if data.HordeProgress >= SandboxVars.HereTheyCome.HordeTriggerThreshold then
-        if HTC_isWithinHordeTime() and HTC_isHordeCooldown(data.LastHordeEndTime) then
-            data.HordeProgress = data.HordeProgress - SandboxVars.HereTheyCome.HordeTriggerThreshold
+        if HTC_isHordePossible(data.LastHordeEndTime) then
+            print("Starting horde #"..tostring(data.HordeNumber))
             HTC_startHorde(data, data.HordeNumber)
+            data.HordeProgress = data.HordeProgress - SandboxVars.HereTheyCome.HordeTriggerThreshold
             data.HordeNumber = data.HordeNumber + 1
         else
             print("Could start horde, but conditions not met.")
         end
     end
-    -- print("Game age in days:" ..tostring(day)..", game age in hours:"..tostring(age * 24))
+end
+
+local function HTC_tick_horde_for_player(player, angle)
+    local minSpawnRange = SandboxVars.HereTheyCome.HordeMinSpawnDistance
+    local maxSpawnRange = SandboxVars.HereTheyCome.HordeMaxSpawnDistance
+    local playerLocation = player:getCurrentSquare()
+    HTC_spawnZombieForPlayer(playerLocation:getX(), playerLocation:getY(), angle, minSpawnRange, maxSpawnRange, HTC_SPAWN_CONFIGS)
+    if SandboxVars.HereTheyCome.PulsePlayersDuringHorde then
+        getWorldSoundManager():addSound(player, playerLocation:getX(), playerLocation:getY(), playerLocation:getZ(),
+                SandboxVars.HereTheyCome.PulseRange, 10);
+    end
 end
 
 function HTC_CheckHordeStatus()
@@ -147,52 +147,13 @@ function HTC_CheckHordeStatus()
                 data.HordeZombiesRemaining = data.HordeZombiesRemaining - 1
                 local players = getOnlinePlayers();
                 for i = 1, players:size() do
-                    local spawnRange = SandboxVars.HereTheyCome.HordeMinSpawnDistance
-                    HTC_spawnZombieForPlayer(players:get(i - 1), spawnRange)
+                    HTC_tick_horde_for_player(players:get(i - 1), data.HordeAngle)
                 end
+                print("Remaining zombies to spawn:" .. tostring(data.HordeZombiesRemaining))
             end
-            print("Remaining zombies to spawn:" .. tostring(data.HordeZombiesRemaining))
             data.HordeTick = data.HordeTick + 1
         else
             HTC_endHorde(data, day)
-        end
-    end
-end
-
-function HTC_spawnZombieForPlayer(player, spawnRange)
-    local MAX_ATTEMPTS = 100;
-    local outfit = "AirCrew"
-    local playerLocation = player:getCurrentSquare();
-    local spawnLocationX = 0;
-    local spawnLocationY = 0;
-    local validSpawnFound = false;
-
-    if playerLocation ~= nil then
-        for _ = 0, MAX_ATTEMPTS do
-            spawnLocationX = playerLocation:getX() + ZombRand(2 * spawnRange) - spawnRange;
-            spawnLocationY = playerLocation:getY() + ZombRand(2 * spawnRange) - spawnRange;
-            local spawnSpace = getWorld():getCell():getGridSquare(spawnLocationX, spawnLocationY, 0);
-            if spawnSpace then
-                local isSafehouse = SafeHouse.getSafeHouse(spawnSpace);
-                if spawnSpace:isSafeToSpawn() and spawnSpace:isOutside() and isSafehouse == nil then
-                    validSpawnFound = true;
-                    break
-                end
-            end
-        end
-    end
-    if validSpawnFound == true then
-        print("Success finding a place for zombie to spawn. x: " .. tostring(spawnLocationX) .. " y: " .. tostring(spawnLocationY))
-        local zombies = addZombiesInOutfit(spawnLocationX, spawnLocationY, 0, 1, outfit, 50, false, false, false, false, 1.5);
-        if SandboxVars.HereTheyCome.PulsePlayersDuringHorde then
-            getWorldSoundManager():addSound(player, playerLocation:getX(), playerLocation:getY(), playerLocation:getZ(),
-                    SandboxVars.HereTheyCome.PulseRange
-            , 10);
-        end
-        for i = 1, zombies:size() do
-            local zombie = zombies:get(i - 1)
-            -- local zombieModData = zombies:get(i-1).getModData().getOrCreate(HTC_State)
-            zombie:pathToCharacter(player)
         end
     end
 end

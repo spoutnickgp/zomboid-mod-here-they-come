@@ -22,19 +22,22 @@ function HTC_onServerCommand(module, command, args)
 	end
 	print("Server command: "..command)
 	if command == "HTCHordeStart" then
-
+		getPlayer():getModData().HTC_HordeState = true
+		local rAlarmIndex = ZombRand(3);
+		local rAlarmText = "IGUI_PlayerText_HTCYell0"..tostring(rAlarmIndex);
+		getPlayer():Say(getText(rAlarmText));
+		print("Attempting to play sound at "..tostring(args["event_location_X"])..","..tostring(args["event_location_Y"]))
+		local square = getWorld():getCell():getGridSquare(args["event_location_X"], args["event_location_Y"], 0);
+		if square ~= nil then
+			local audio = getSoundManager():PlayWorldSoundWav("event_sound_02", square, 1.0, 200.0, 100.0, false);
+		end
 	end
 
 	if command == "HTCHordeEnd" then
-
+		getPlayer():getModData().HTC_HordeState = false
 	end
 
 	if command == "HTCHordeState" then
-		if args["onoff"] == true and getPlayer():getModData().HTC_HordeState == false then
-			local rAlarmIndex = ZombRand(3);
-			local rAlarmText = "IGUI_PlayerText_HTCYell0"..tostring(rAlarmIndex);
-			getPlayer():Say(getText(rAlarmText));
-		end
 		getPlayer():getModData().HTC_HordeState = args["onoff"]
 		print("Horde State: progress="..tostring(args["progress"]).."/"..tostring(args["threshold"])..". Horde is "..tostring(getPlayer():getModData().HTC_HordeState))
 		HTC_IndicatorUpdate()

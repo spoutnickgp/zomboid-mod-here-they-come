@@ -32,11 +32,14 @@ Sandbox_EN = {
 	Sandbox_HTC_HordeZombieSpawnRate = "Number of ticks between zombie spawns when horde is active"
 	Sandbox_HTC_HordeZombieSpawnRate_tooltip = ""
 
-	Sandbox_HTC_HordeMinSpawnDistance = "Zombies spawn distance from players"
+	Sandbox_HTC_HordeMinSpawnDistance = "Minimum horde spawn distance from players"
 	Sandbox_HTC_HordeMinSpawnDistance_tooltip = ""
 
-	Sandbox_HTC_HordeMaxSpawnDistance = "Zombies spawn distance from players"
+	Sandbox_HTC_HordeMaxSpawnDistance = "Maximum horde spawn distance from players"
 	Sandbox_HTC_HordeMaxSpawnDistance_tooltip = ""
+
+	Sandbox_HTC_HordeDirectionMaxAngle = "Horde Angle Spread"
+	Sandbox_HTC_HordeDirectionMaxAngle_tooltip = "Max angle at which the horde origin may be focused"
 
 	Sandbox_HTC_HordeProgressIndicator = "Horde risk indicator display toggle"
 	Sandbox_HTC_HordeProgressIndicator_tooltip = ""
@@ -46,4 +49,5 @@ Sandbox_EN = {
 
 	Sandbox_HTC_PulseRange = "Horde Pulse Range"
 	Sandbox_HTC_PulseRange_tooltip = "Range of the pulse Pulse pulling zombies to players"
+
 }

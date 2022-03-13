@@ -3,7 +3,7 @@ VERSION = 1,
 option HereTheyCome.HordeCooldown
 {
 	type = integer,
-	min = 10,
+	min = 0,
 	max = 72000,
 	default = 2880,
 	page = ZombieAdvanced,
@@ -27,7 +27,7 @@ option HereTheyCome.HordeMaxHour
 	max = 23,
 	default = 22,
 	page = ZombieAdvanced,
-	translation = HTC_HereTheyComeMaxHour,
+	translation = HTC_HordeMaxHour,
 }
 
 option HereTheyCome.HordeMinHourlyProgress
@@ -124,7 +124,7 @@ option HereTheyCome.HordeMaxSpawnDistance
 {
 	type = integer,
 	min = 5,
-	max = 150,
+	max = 200,
 	default = 75,
 	page = ZombieAdvanced,
 	translation = HTC_HordeMaxSpawnDistance,
@@ -144,6 +144,17 @@ option HereTheyCome.PulsePlayersDuringHorde
 	default = true,
 	page = ZombieAdvanced,
 	translation = HTC_PulsePlayersDuringHorde,
+}
+
+
+option HereTheyCome.HordeDirectionMaxAngle
+{
+    type = integer,
+    min = 0,
+    max = 360,
+    default = 20,
+    page = ZombieAdvanced,
+    translation = HTC_HordeDirectionMaxAngle,
 }
 
 option HereTheyCome.PulseRange
