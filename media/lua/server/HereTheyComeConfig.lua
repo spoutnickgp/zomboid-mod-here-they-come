@@ -1,10 +1,8 @@
 --HTC_SPAWN_CONFIGS = {
---    "AirCrew",
 --    "AmbulanceDriver",
 --    "ArmyCamoDesert",
 --    "ArmyCamoGreen",
 --    "ArmyServiceUniform",
---    "Bandit",
 --    "BaseballFan_KY",
 --    "BaseballFan_Rangers",
 --    "BaseballFan_Z",
@@ -89,15 +87,6 @@
 --    "Trader",
 --    "TutorialMom",
 --    "Varsity",
---    "Waiter_Classy",
---    "Waiter_Diner",
---    "Waiter_Market",
---    "Waiter_PileOCrepe",
---    "Waiter_PizzaWhirled",
---    "Waiter_Restaurant",
---    "Waiter_Spiffo",
---    "Waiter_TachoDelPancho",
---    "WaiterStripper",
 --    "Young",
 --    "Bob",
 --    "ConstructionWorker",
@@ -107,16 +96,7 @@
 --    "Frank_Hemingway",
 --    "Ghillie",
 --    "Groom",
---    "HockeyPsycho",
---    "Hunter",
---    "Inmate",
---    "InmateEscaped",
---    "InmateKhaki",
 --    "Jewelry",
---    "Jockey01",
---    "Jockey02",
---    "Jockey03",
---    "Jockey06",
 --    "John",
 --    "Judge_Matt_Hass",
 --    "MallSecurity",
@@ -126,17 +106,66 @@
 --    "MetalWorker",
 --    "OfficeWorker",
 --    "PokerDealer",
---    "PoliceRiot",
 --    "Priest",
 --    "PrisonGuard",
 --    "Rev_Peter_Watts",
 --    "Raider",
---    "Security",
 --    "Sir_Twiggy",
---    "Thug",
 --    "TutorialDad",
 --    "Veteran",
---    "Waiter_TacoDelPancho",
---    "Woodcut" };
 
-HTC_SPAWN_CONFIGS = { "AirCrew" };
+HTC_SPAWN_CONFIGS = {
+    DeepForest = {
+        "HockeyPsycho",
+        "Hunter",
+        "Woodcut",
+        "AirCrew",
+        "ArmyCamoGreen",
+        "ArmyServiceUniform",
+        "Veteran" },
+    TownZone = {
+        "Mechanic",
+        "PoliceRiot",
+        "PrisonGuard",
+        "Trader",
+        "Waiter_TacoDelPancho",
+        "Security",
+        "ArmyServiceUniform",
+        "Waiter_Classy",
+        "Waiter_Diner",
+        "Waiter_Market",
+        "Waiter_PileOCrepe",
+        "Waiter_PizzaWhirled",
+        "Waiter_Restaurant",
+        "Waiter_Spiffo",
+        "Waiter_TachoDelPancho",
+        "WaiterStripper" },
+    Farm = {
+        "Hunter",
+        "Woodcut",
+        "Jockey01",
+        "Jockey02",
+        "Jockey03",
+        "Jockey06"
+    },
+    Forest = {
+        "Hunter",
+        "Woodcut",
+        "Fisherman" },
+    Nav = {
+        "Fisherman"
+    },
+    TrailerPark = {
+        "Thug",
+        "Bandit"
+    },
+    Vegitation = {
+        "Inmate",
+        "InmateEscaped",
+        "InmateKhaki"
+    },
+    Default = {
+        "TutorialDad"
+    }
+
+}

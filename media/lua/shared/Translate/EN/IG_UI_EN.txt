@@ -1,5 +1,18 @@
 IGUI_EN = {
-	IGUI_PlayerText_HTCYell00 = "They caught my scent... Here they come!!!",
-	IGUI_PlayerText_HTCYell01 = "They must have heard me... Here they come!!!",
-    IGUI_PlayerText_HTCYell02 = "Achoo... Damn they must have heard me. Here they come!!!"
+	IGUI_PlayerText_HTCReactionPre01 = "What the??! This sound is coming from the ",
+	IGUI_PlayerText_HTCReactionPre02 = "Hell!! That sound is coming from the ",
+    IGUI_PlayerText_HTCReactionPre03 = "What the??! What's happening towards the ",
+
+    IGUI_PlayerText_HTCDirection_1 = "East"
+    IGUI_PlayerText_HTCDirection_2 = "North-East"
+    IGUI_PlayerText_HTCDirection_3 = "North"
+    IGUI_PlayerText_HTCDirection_4 = "North-West"
+    IGUI_PlayerText_HTCDirection_5 = "West"
+    IGUI_PlayerText_HTCDirection_6 = "South-West"
+    IGUI_PlayerText_HTCDirection_7 = "South"
+    IGUI_PlayerText_HTCDirection_8 = "South-East"
+
+    IGUI_PlayerText_HTCReactionPost01 = ". Gotta get out of here!",
+    IGUI_PlayerText_HTCReactionPost02 = ". Gotta get out of here before they come!",
+    IGUI_PlayerText_HTCReactionPost03 = ". Here they come!"
 }
