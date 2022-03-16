@@ -1,6 +1,8 @@
 local SOUND_OFFSET_RANGE = 10
 local NUM_TEXT_LINES = 3
-local WARNING_DISPLAY_THRESHOLD = 20
+local WARNING_DISPLAY_THRESHOLD = 80
+local SAFE_DISPLAY_THRESHOLD = 20
+
 local function HTC_IndicatorNew(x, y, width, height, texture)
     local self = {};
     self.image = ISImage:new(x, y, width, height, texture);
@@ -14,18 +16,25 @@ local function HTC_IndicatorUpdate()
     if getPlayer() == nil then
         return
     end
+    local safe_indicator = getPlayer():getModData().HTC_Indicator_Safe;
     local warning_indicator = getPlayer():getModData().HTC_Indicator_Warning;
     local active_indicator = getPlayer():getModData().HTC_Indicator_Active;
     if warning_indicator ~= nil and active_indicator ~= nil then
         if getPlayer():getModData().HTC_HordeState == true then
             active_indicator.image:setVisible(true);
             warning_indicator.image:setVisible(false);
+            safe_indicator.image:setVisible(false);
         else
             active_indicator.image:setVisible(false);
-            if getPlayer():getModData().HTC_HordeProgress ~= nil and getPlayer():getModData().HTC_HordeProgress >= WARNING_DISPLAY_THRESHOLD then
-                warning_indicator.image:setVisible(true);
-            else
-                warning_indicator.image:setVisible(false);
+            if getPlayer():getModData().HTC_HordeProgress ~= nil then
+                if getPlayer():getModData().HTC_HordeProgress >= SAFE_DISPLAY_THRESHOLD then
+                    safe_indicator.image:setVisible(true);
+                    warning_indicator.image:setVisible(false);
+                end
+                if getPlayer():getModData().HTC_HordeProgress >= WARNING_DISPLAY_THRESHOLD then
+                    safe_indicator.image:setVisible(false);
+                    warning_indicator.image:setVisible(true);
+                end
             end
         end
     end
@@ -35,6 +44,7 @@ local function HTC_IndicatorInitialise()
     if getPlayer() == nil then
         return
     end
+    getPlayer():getModData().HTC_Indicator_Safe = HTC_IndicatorNew(getCore():getScreenWidth() - 210, 12, 32, 32, Texture.getSharedTexture("media/ui/HTC_safe_horde.png"));
     getPlayer():getModData().HTC_Indicator_Warning = HTC_IndicatorNew(getCore():getScreenWidth() - 210, 12, 32, 32, Texture.getSharedTexture("media/ui/HTC_warning_horde.png"));
     getPlayer():getModData().HTC_Indicator_Active = HTC_IndicatorNew(getCore():getScreenWidth() - 210, 12, 32, 32, Texture.getSharedTexture("media/ui/HTC_active_horde.png"));
     HTC_IndicatorUpdate();
@@ -57,10 +67,8 @@ end
 
 local function HTC_onServerCommand(module, command, args)
     if module ~= "HTCmodule" then
-        print("module is not HTCmodule");
         return
     end
-    print("Server command: " .. command)
     if command == "HTCHordeStart" then
         getPlayer():getModData().HTC_HordeState = true
 
@@ -68,12 +76,11 @@ local function HTC_onServerCommand(module, command, args)
         local angle = args["angle"]
         local text = HTC_getTriggerReactionText(angle, rand)
         getPlayer():Say(text);
-        print("Attempting to play sound at " .. tostring(args["event_location_X"]) .. "," .. tostring(args["event_location_Y"]))
+        -- print("Attempting to play sound at " .. tostring(args["event_location_X"]) .. "," .. tostring(args["event_location_Y"]))
         local soundOrigin = HTC_getPointOnCircle(getPlayer():getX(), getPlayer():getY(), angle, SOUND_OFFSET_RANGE)
         local originSquare = getWorld():getCell():getGridSquare(soundOrigin.x, soundOrigin.y, 0)
         if originSquare ~= nil then
-            print("event_sound_0"..tostring(rand))
-            getSoundManager():PlayWorldSoundWav("event_sound_0"..tostring(rand), originSquare, 1.0, 1000.0, 300.0, false);
+            getSoundManager():PlayWorldSoundWav("event_sound_0"..tostring(rand), originSquare, 1.0, 200.0, 300.0, false);
         end
     end
 
