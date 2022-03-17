@@ -44,10 +44,15 @@ Sandbox_EN = {
 	Sandbox_HTC_HordeProgressIndicator = "Horde risk indicator display toggle"
 	Sandbox_HTC_HordeProgressIndicator_tooltip = ""
 
+    Sandbox_HordeZombieWarnTime = "Horde heads-up time"
+    Sandbox_HordeZombieWarnTime_tooltip = "Horde heads-up time in game minutes"
+
 	Sandbox_HTC_PulsePlayersDuringHorde = "Horde Pulse"
 	Sandbox_HTC_PulsePlayersDuringHorde_tooltip = "Silently pulse and draw zombies to player during Horde"
 
 	Sandbox_HTC_PulseRange = "Horde Pulse Range"
-	Sandbox_HTC_PulseRange_tooltip = "Range of the pulse Pulse pulling zombies to players"
+	Sandbox_HTC_PulseRange_tooltip = "Range of the pulse pulling zombies to players"
 
+	Sandbox_HTC_PulseFrequency = "Horde Pulse Frequency"
+	Sandbox_HTC_PulseFrequency_tooltip = "How many ticks between pulses pulling zombies to players"
 }

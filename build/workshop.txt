@@ -1,0 +1,12 @@
+version=1
+id=2779839289
+title=Here They Come!
+description=Highly configurable horde mode events.
+description=- Happens randomly during a specified time frame.
+description=- Configurable duration, direction and spread
+description=- Cooldown mechanics
+description=- Biome aware spawn system
+description=- Player notification/reaction events
+description=- Works in both MP & SP
+tags=Build 41;Hardmode;Multiplayer
+visibility=friendsOnly

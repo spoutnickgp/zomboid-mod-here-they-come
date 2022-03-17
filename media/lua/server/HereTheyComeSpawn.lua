@@ -33,7 +33,7 @@ function HTC_spawnZombieForPlayer(player, baseAngle, minSpawnRange, maxSpawnRang
         end
     end
     if validSpawnFound == true then
-        local selectedOutfits = HTC_get_spawn_outfit(spawnLocationX, spawnLocationY, available_outfits)
+        local selectedOutfits = HTC_getSpawnOutfit(spawnLocationX, spawnLocationY, available_outfits)
         local outfit = selectedOutfits[ZombRand(#selectedOutfits) + 1]
         print("Spawning zombie of type "..outfit.." at location "..tostring(spawnLocationX)..", "..tostring(spawnLocationY))
         HTC_spawnZombieAt(player, spawnLocationX, spawnLocationY, outfit)

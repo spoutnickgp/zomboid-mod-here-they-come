@@ -138,14 +138,15 @@ option HereTheyCome.HordeProgressIndicator
 	translation = HTC_HordeProgressIndicator,
 }
 
-option HereTheyCome.PulsePlayersDuringHorde
+option HereTheyCome.HordeZombieWarnTime
 {
-	type = boolean,
-	default = true,
-	page = ZombieAdvanced,
-	translation = HTC_PulsePlayersDuringHorde,
+    type = integer
+    min = 0,
+    max = 180,
+    default = 20
+    page = ZombieAdvanced
+    translation = HTC_HordeZombieWarnTicks
 }
-
 
 option HereTheyCome.HordeDirectionMaxAngle
 {
@@ -157,6 +158,14 @@ option HereTheyCome.HordeDirectionMaxAngle
     translation = HTC_HordeDirectionMaxAngle,
 }
 
+option HereTheyCome.PulsePlayersDuringHorde
+{
+	type = boolean,
+	default = true,
+	page = ZombieAdvanced,
+	translation = HTC_PulsePlayersDuringHorde,
+}
+
 option HereTheyCome.PulseRange
 {
 	type = integer,
@@ -165,4 +174,14 @@ option HereTheyCome.PulseRange
 	default = 50,
 	page = ZombieAdvanced,
 	translation = HTC_PulseRange,
+}
+
+option HereTheyCome.PulseFrequency
+{
+	type = integer,
+	min = 1,
+	max = 2000,
+	default = 100,
+	page = ZombieAdvanced,
+	translation = HTC_PulseFrequency,
 }
