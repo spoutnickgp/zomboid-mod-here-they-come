@@ -20,11 +20,17 @@ Sandbox_EN = {
 	Sandbox_HTC_HordeFirstDay = "First day at which a horde may appear"
 	Sandbox_HTC_HordeFirstDay_tooltip = ""
 
-	Sandbox_HTC_HordeMinZombieCount = "Minimum number of zombies per horde"
-	Sandbox_HTC_HordeMinZombieCount_tooltip = ""
+    Sandbox_HTC_HordeNumWaves = "Number of waves"
+    Sandbox_HTC_HordeNumWaves_tooltip = ""
 
-	Sandbox_HTC_HordeMaxZombieCount = "Maximum number of zombies per horde"
-	Sandbox_HTC_HordeMaxZombieCount_tooltip = ""
+	Sandbox_HTC_HordeWaveMinZombieCount = "Minimum number of zombies per horde"
+	Sandbox_HTC_HordeWaveMinZombieCount_tooltip = ""
+
+	Sandbox_HTC_HordeWaveMaxZombieCount = "Maximum number of zombies per horde"
+	Sandbox_HTC_HordeWaveMaxZombieCount_tooltip = ""
+
+    Sandbox_HTC_HordeTimeBetweenWaves = "Horde time between waves"
+    Sandbox_HTC_HordeTimeBetweenWaves_tooltip = "Number of minutes between waves"
 
 	Sandbox_HTC_HordeZombieIncrement = "Additional Zombies per horde"
 	Sandbox_HTC_HordeZombieIncrement_tooltip = "Additional number of zombies for each horde"
@@ -32,10 +38,10 @@ Sandbox_EN = {
 	Sandbox_HTC_HordeZombieSpawnRate = "Horde spawn rate"
 	Sandbox_HTC_HordeZombieSpawnRate_tooltip = "Number of ticks between zombie spawns when horde is active"
 
-	Sandbox_HTC_HordeMinSpawnDistance = "Minimum horde spawn distance from players"
+	Sandbox_HTC_HordeMinSpawnDistance = "Minimum horde spawn distance"
 	Sandbox_HTC_HordeMinSpawnDistance_tooltip = ""
 
-	Sandbox_HTC_HordeMaxSpawnDistance = "Maximum horde spawn distance from players"
+	Sandbox_HTC_HordeMaxSpawnDistance = "Maximum horde spawn distance"
 	Sandbox_HTC_HordeMaxSpawnDistance_tooltip = ""
 
 	Sandbox_HTC_HordeDirectionMaxAngle = "Horde Angle Spread"
@@ -53,6 +59,6 @@ Sandbox_EN = {
 	Sandbox_HTC_PulseRange = "Horde Pulse Range"
 	Sandbox_HTC_PulseRange_tooltip = "Range of the pulse pulling zombies to players"
 
-	Sandbox_HTC_PulseFrequency = "Horde Pulse Frequency"
-	Sandbox_HTC_PulseFrequency_tooltip = "How many ticks between pulses pulling zombies to players"
+	Sandbox_HTC_TimeBetweenPulses = "Horde Noise Pulse Frequency"
+	Sandbox_HTC_TimeBetweenPulses_tooltip = "How many minutes between players noise pulses"
 }

@@ -74,11 +74,23 @@ local function HTC_displayWarningText(angle, variation)
     getPlayer():Say(text);
 end
 
+local function HTC_displayStartText(variation)
+    getPlayer():Say(getText("IGUI_PlayerText_HTCStartReaction_0" .. tostring(variation)));
+end
+
 local function HTC_playWarningSound(angle, variation)
     local soundOrigin = HTC_getPointOnCircle(getPlayer():getX(), getPlayer():getY(), angle, SOUND_OFFSET_RANGE)
     local originSquare = getWorld():getCell():getGridSquare(soundOrigin.x, soundOrigin.y, 0)
     if originSquare ~= nil then
-        getSoundManager():PlayWorldSoundWav("event_sound_0"..tostring(variation), originSquare, 1.0, 400.0, 300.0, false);
+        getAmbientStreamManager():addAmbient("event_sound_0"..tostring(variation), soundOrigin.x, soundOrigin.y, 0, 100.0)
+    end
+end
+
+local function HTC_playWaveSound(angle, variation)
+    local soundOrigin = HTC_getPointOnCircle(getPlayer():getX(), getPlayer():getY(), angle, SOUND_OFFSET_RANGE)
+    local originSquare = getWorld():getCell():getGridSquare(soundOrigin.x, soundOrigin.y, 0)
+    if originSquare ~= nil then
+        getAmbientStreamManager():addAmbient("event_sound_0"..tostring(variation), soundOrigin.x, soundOrigin.y, 0, 100.0)
     end
 end
 
@@ -87,13 +99,19 @@ local function HTC_onCommand(module, command, args)
         return
     end
     if command == "HTCHordeWarn" then
-        getPlayer():getModData().HTC_HordeRand = ZombRand(NUM_TEXT_LINES) + 1
-        HTC_playWarningSound(args["angle"], getPlayer():getModData().HTC_HordeRand)
-        HTC_displayWarningText(args["angle"], getPlayer():getModData().HTC_HordeRand)
+        local variation = ZombRand(NUM_TEXT_LINES) + 1
+        HTC_playWarningSound(args["angle"], variation)
+        HTC_displayWarningText(args["angle"], variation)
     end
     if command == "HTCHordeStart" then
         getPlayer():getModData().HTC_HordeState = true
-        getPlayer():Say(getText("IGUI_PlayerText_HTCStartReaction"));
+        local variation = ZombRand(NUM_TEXT_LINES) + 1
+        if args["wave_number"] == 1 then
+            HTC_playWaveSound(args["angle"], variation)
+            HTC_displayStartText(variation)
+        else
+            HTC_displayStartText(0)
+        end
     end
 
     if command == "HTCHordeEnd" then
@@ -115,6 +133,7 @@ end
 local function HTC_onClientCommand(module, command, player, args)
     HTC_onCommand(module, command, args)
 end
+
 
 if isServer() == false then
     print("Loading Here They Come client module hooks (client_mode: "..tostring(isClient())..")...")

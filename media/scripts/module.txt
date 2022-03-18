@@ -1,0 +1,31 @@
+module HereTheyCome {
+    imports {
+        Base
+    }
+    sound EventTrigger01
+    {
+        clip
+        {
+            event = sound/event_sound_01,
+            distanceMax = 200,
+        }
+    }
+
+    sound EventTrigger02
+    {
+        clip
+        {
+            event = sound/event_sound_02,
+            distanceMax = 200,
+        }
+    }
+
+    sound EventTrigger02
+    {
+        clip
+        {
+            event = sound/event_sound_02,
+            distanceMax = 200,
+        }
+    }
+}

@@ -32,7 +32,7 @@ function HTC_getDirectionFromAngle(angle)
     return "DIR_" .. tostring(math.floor(angle % 360 / 8))
 end
 
-function HTC_callForeEachPlayer(callable, data)
+function HTC_callForEachPlayer(callable, data)
     if isServer() then
         local players = getOnlinePlayers();
         for i = 0, players:size() - 1 do

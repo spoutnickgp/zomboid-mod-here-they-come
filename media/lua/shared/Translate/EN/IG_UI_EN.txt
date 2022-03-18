@@ -16,5 +16,8 @@ IGUI_EN = {
     IGUI_PlayerText_HTCWarmupReactionPost_02 = ". Gotta get out of here before they come!",
     IGUI_PlayerText_HTCWarmupReactionPost_03 = ". No time to waste, gotta dig in or ditch this place!"
 
-    IGUI_PlayerText_HTCStartReaction = "Here they come!"
+    IGUI_PlayerText_HTCStartReaction_00 = "Here they come!"
+    IGUI_PlayerText_HTCStartReaction_01 = "Here they come again!"
+    IGUI_PlayerText_HTCStartReaction_02 = "Another wave!"
+    IGUI_PlayerText_HTCStartReaction_02 = "And again!"
 }

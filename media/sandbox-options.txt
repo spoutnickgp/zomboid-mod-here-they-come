@@ -65,29 +65,49 @@ option HereTheyCome.HordeFirstDay
 	type = integer,
 	min = 0,
 	max = 365,
-	default = 10,
+	default = 0,
 	page = ZombieAdvanced,
 	translation = HTC_HordeFirstDay,
 }
 
-option HereTheyCome.HordeMinZombieCount
+option HereTheyCome.HordeNumWaves
+{
+	type = integer,
+	min = 1,
+	max = 10,
+	default = 3,
+	page = ZombieAdvanced,
+	translation = HTC_HordeNumWaves,
+}
+
+option HereTheyCome.TimeBetweenWaves
+{
+	type = integer,
+	min = 1,
+	max = 120,
+	default = 10,
+	page = ZombieAdvanced,
+	translation = HTC_HordeTimeBetweenWaves,
+}
+
+option HereTheyCome.HordeWaveMinZombieCount
 {
 	type = integer,
 	min = 1,
 	max = 7200,
 	default = 100,
 	page = ZombieAdvanced,
-	translation = HTC_HordeMinZombieCount,
+	translation = HTC_HordeWaveMinZombieCount,
 }
 
-option HereTheyCome.HordeMaxZombieCount
+option HereTheyCome.HordeWaveMaxZombieCount
 {
 	type = integer,
 	min = 0,
 	max = 7200,
 	default = 800,
 	page = ZombieAdvanced,
-	translation = HTC_HordeMaxZombieCount,
+	translation = HTC_HordeWaveMaxZombieCount,
 }
 
 option HereTheyCome.HordeZombieIncrement
@@ -98,16 +118,6 @@ option HereTheyCome.HordeZombieIncrement
 	default = 50,
 	page = ZombieAdvanced,
 	translation = HTC_HordeZombieIncrement,
-}
-
-option HereTheyCome.HordeZombieSpawnRate
-{
-	type = integer,
-	min = 1,
-	max = 100,
-	default = 25,
-	page = ZombieAdvanced,
-	translation = HTC_HordeZombieSpawnRate,
 }
 
 option HereTheyCome.HordeMinSpawnDistance
@@ -176,12 +186,12 @@ option HereTheyCome.PulseRange
 	translation = HTC_PulseRange,
 }
 
-option HereTheyCome.PulseFrequency
+option HereTheyCome.TimeBetweenPulses
 {
 	type = integer,
 	min = 1,
-	max = 2000,
-	default = 100,
+	max = 120,
+	default = 5,
 	page = ZombieAdvanced,
-	translation = HTC_PulseFrequency,
+	translation = HTC_TimeBetweenPulses,
 }
