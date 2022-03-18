@@ -16,10 +16,14 @@ function HTC_spawnZombieForPlayer(player, baseAngle, minSpawnRange, maxSpawnRang
     local spawnLocationY = 0;
     local validSpawnFound = false;
 
+    local playerLocation = player:getCurrentSquare()
+    if playerLocation == nil then
+        return
+    end
     for _ = 0, MAX_ATTEMPTS do
         local offsetAngle = ZombRand(SandboxVars.HereTheyCome.HordeDirectionMaxAngle) - SandboxVars.HereTheyCome.HordeDirectionMaxAngle / 2
         local offsetRange = ZombRand(maxSpawnRange - minSpawnRange)
-        local pos = HTC_getPointOnCircle(player:getCurrentSquare():getX(), player:getCurrentSquare():getY(), baseAngle + offsetAngle, minSpawnRange + offsetRange)
+        local pos = HTC_getPointOnCircle(playerLocation:getX(), playerLocation:getY(), baseAngle + offsetAngle, minSpawnRange + offsetRange)
         spawnLocationX = pos.x
         spawnLocationY = pos.y
         local spawnSpace = getWorld():getCell():getGridSquare(spawnLocationX, spawnLocationY, 0);

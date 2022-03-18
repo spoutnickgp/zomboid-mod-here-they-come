@@ -26,11 +26,11 @@ Sandbox_EN = {
 	Sandbox_HTC_HordeMaxZombieCount = "Maximum number of zombies per horde"
 	Sandbox_HTC_HordeMaxZombieCount_tooltip = ""
 
-	Sandbox_HTC_HordeZombieIncrement = "Additional number of zombies for each horde"
-	Sandbox_HTC_HordeZombieIncrement_tooltip = ""
+	Sandbox_HTC_HordeZombieIncrement = "Additional Zombies per horde"
+	Sandbox_HTC_HordeZombieIncrement_tooltip = "Additional number of zombies for each horde"
 
-	Sandbox_HTC_HordeZombieSpawnRate = "Number of ticks between zombie spawns when horde is active"
-	Sandbox_HTC_HordeZombieSpawnRate_tooltip = ""
+	Sandbox_HTC_HordeZombieSpawnRate = "Horde spawn rate"
+	Sandbox_HTC_HordeZombieSpawnRate_tooltip = "Number of ticks between zombie spawns when horde is active"
 
 	Sandbox_HTC_HordeMinSpawnDistance = "Minimum horde spawn distance from players"
 	Sandbox_HTC_HordeMinSpawnDistance_tooltip = ""
@@ -41,7 +41,7 @@ Sandbox_EN = {
 	Sandbox_HTC_HordeDirectionMaxAngle = "Horde Angle Spread"
 	Sandbox_HTC_HordeDirectionMaxAngle_tooltip = "Max angle at which the horde origin may be focused"
 
-	Sandbox_HTC_HordeProgressIndicator = "Horde risk indicator display toggle"
+	Sandbox_HTC_HordeProgressIndicator = "Horde progress indicator"
 	Sandbox_HTC_HordeProgressIndicator_tooltip = ""
 
     Sandbox_HordeZombieWarnTime = "Horde heads-up time"

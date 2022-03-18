@@ -1,4 +1,4 @@
-local SOUND_OFFSET_RANGE = 20
+local SOUND_OFFSET_RANGE = 5
 local NUM_TEXT_LINES = 3
 local SAFE_DISPLAY_THRESHOLD = 20
 local WARNING_DISPLAY_THRESHOLD = 80
@@ -37,23 +37,23 @@ function HTC_IndicatorUpdate()
     local safe_indicator = getPlayer():getModData().HTC_Indicator_Safe;
     local warning_indicator = getPlayer():getModData().HTC_Indicator_Warning;
     local active_indicator = getPlayer():getModData().HTC_Indicator_Active;
-
-    if warning_indicator ~= nil and active_indicator ~= nil then
-        if getPlayer():getModData().HTC_HordeState == true then
-            active_indicator.image:setVisible(true);
-            warning_indicator.image:setVisible(false);
-            safe_indicator.image:setVisible(false);
-        else
-            active_indicator.image:setVisible(false);
-            if getPlayer():getModData().HTC_HordeProgress ~= nil then
-                if getPlayer():getModData().HTC_HordeProgress >= SAFE_DISPLAY_THRESHOLD then
-                    safe_indicator.image:setVisible(true);
-                    warning_indicator.image:setVisible(false);
-                end
-                if getPlayer():getModData().HTC_HordeProgress >= WARNING_DISPLAY_THRESHOLD then
-                    safe_indicator.image:setVisible(false);
-                    warning_indicator.image:setVisible(true);
-                end
+    if safe_indicator == nil or warning_indicator == nil or active_indicator == nil then
+        return
+    end
+    if getPlayer():getModData().HTC_HordeState == true then
+        active_indicator.image:setVisible(true);
+        warning_indicator.image:setVisible(false);
+        safe_indicator.image:setVisible(false);
+    else
+        active_indicator.image:setVisible(false);
+        if getPlayer():getModData().HTC_HordeProgress ~= nil then
+            if getPlayer():getModData().HTC_HordeProgress >= SAFE_DISPLAY_THRESHOLD then
+                safe_indicator.image:setVisible(true);
+                warning_indicator.image:setVisible(false);
+            end
+            if getPlayer():getModData().HTC_HordeProgress >= WARNING_DISPLAY_THRESHOLD then
+                safe_indicator.image:setVisible(false);
+                warning_indicator.image:setVisible(true);
             end
         end
     end
@@ -80,7 +80,6 @@ local function HTC_playWarningSound(angle, variation)
     if originSquare ~= nil then
         getSoundManager():PlayWorldSoundWav("event_sound_0"..tostring(variation), originSquare, 1.0, 400.0, 300.0, false);
     end
-    getPlayer():Say(getText("IGUI_PlayerText_HTCStartReaction"));
 end
 
 local function HTC_onCommand(module, command, args)
@@ -103,10 +102,8 @@ local function HTC_onCommand(module, command, args)
 
     if command == "HTCHordeState" then
         getPlayer():getModData().HTC_HordeState = args["onoff"]
-        print("Horde State: progress=" .. tostring(args["progress"]) .. "/" .. tostring(args["threshold"]))
+        print("Horde State="..tostring(getPlayer():getModData().HTC_HordeState)..", progress=" .. tostring(args["progress"]) .. "/" .. tostring(args["threshold"]))
         getPlayer():getModData().HTC_HordeProgress = args["progress"] / math.max(1, args["threshold"]) * 100
-        print("Horde is " .. tostring(getPlayer():getModData().HTC_HordeState))
-
         HTC_IndicatorUpdate()
     end
 end

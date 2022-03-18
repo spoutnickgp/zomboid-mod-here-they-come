@@ -140,12 +140,12 @@ option HereTheyCome.HordeProgressIndicator
 
 option HereTheyCome.HordeZombieWarnTime
 {
-    type = integer
-    min = 0,
+    type = integer,
+    min = 5,
     max = 180,
-    default = 20
-    page = ZombieAdvanced
-    translation = HTC_HordeZombieWarnTicks
+    default = 20,
+    page = ZombieAdvanced,
+    translation = HTC_HordeZombieWarnTime
 }
 
 option HereTheyCome.HordeDirectionMaxAngle

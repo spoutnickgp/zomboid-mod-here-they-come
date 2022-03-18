@@ -3,7 +3,6 @@ require "HereTheyComeSpawn"
 require "HereTheyComeHelpers"
 
 local HTC_STATE_KEY = "HTC_State"
-local SAFETY_RANGE_MARGIN = 10
 
 local function HTC_ServerSetup()
     print("Setup Server Defaults for Horde Mode")
@@ -94,7 +93,6 @@ local function HTC_CheckHordeEligibility()
             --        ", Cooldown:" .. tostring(SandboxVars.HereTheyCome.HordeCooldown) ..
             --        ", Now:" .. tostring(HTC_getHoursSinceGameStart()))
             if HTC_isHordePossible(data.LastHordeEndTime) then
-                print("Starting horde #" .. tostring(data.HordeNumber))
                 HTC_startHorde(data)
                 data.HordeProgress = data.HordeProgress - SandboxVars.HereTheyCome.HordeTriggerThreshold
                 data.HordeNumber = data.HordeNumber + 1
@@ -121,14 +119,7 @@ local function HTC_startHordeForPlayer(player, data)
         if playerLocation ~= nil then
             local hordeOrigin = HTC_getPointOnCircle(playerLocation:getX(), playerLocation:getY(),
                     data.HordeAngle, SandboxVars.HereTheyCome.HordeMinSpawnDistance)
-            if SandboxVars.HereTheyCome.PulsePlayersDuringHorde then
-                getWorldSoundManager():addSound(player, hordeOrigin.x, hordeOrigin.y, 0, SandboxVars.HereTheyCome.HordeMaxSpawnDistance, 10);
-                if SandboxVars.HereTheyCome.PulsePlayersDuringHorde then
-                    getWorldSoundManager():addSound(player,
-                            playerLocation:getX(), playerLocation:getY(), playerLocation:getZ(),
-                            SandboxVars.HereTheyCome.PulseRange + SAFETY_RANGE_MARGIN, 10);
-                end
-            end
+            getWorldSoundManager():addSound(player, hordeOrigin.x, hordeOrigin.y, 0, SandboxVars.HereTheyCome.HordeMaxSpawnDistance, 100);
             local hordeData = {
                 event_location_X = hordeOrigin.x,
                 event_location_Y = hordeOrigin.y,
@@ -143,13 +134,13 @@ local function HTC_startHordeForPlayer(player, data)
 end
 
 function HTC_startHorde(data)
-    print("Starting Here They Come horde...")
-    data.HordeActive = true;
+    print("Starting Here they Come horde #" .. tostring(data.HordeNumber))
     data.HordeWarmup = true;
     data.HordeAngle = ZombRand(360);
     data.HordeIntensity = ZombRand(100);
     data.HordeTick = 0;
     data.CurrentHordeStartTime = HTC_getHoursSinceGameStart() * 60
+    data.HordeActive = true;
 
     local hordeZombieCount = SandboxVars.HereTheyCome.HordeMinZombieCount + data.HordeIntensity * SandboxVars.HereTheyCome.HordeZombieIncrement * data.HordeNumber / 100
     data.HordeZombiesRemaining = math.floor(math.min(hordeZombieCount, SandboxVars.HereTheyCome.HordeMaxZombieCount))
@@ -158,6 +149,7 @@ end
 
 local function HTC_endHorde(data)
     print("Horde finished...")
+    data.HordeWarmup = true
     data.HordeActive = false
     data.LastHordeEndTime = HTC_getHoursSinceGameStart() * 60
     HTC_broadcastCommand("HTCmodule", "HTCHordeEnd", { })
@@ -181,11 +173,10 @@ local function HTC_HordeProgress()
     end
 end
 
-local function HTC_pulseOnPlayer(player, data)
+local function HTC_pulseOnPlayer(player, range)
     local playerLocation = player:getCurrentSquare()
-    if SandboxVars.HereTheyCome.PulsePlayersDuringHorde and data.HordeTick % SandboxVars.HereTheyCome.PulseFrequency == 0 then
-        getWorldSoundManager():addSound(player, playerLocation:getX(), playerLocation:getY(), playerLocation:getZ(),
-                SandboxVars.HereTheyCome.PulseRange, 10);
+    if playerLocation ~= nil and SandboxVars.HereTheyCome.PulsePlayersDuringHorde then
+        getWorldSoundManager():addSound(player, playerLocation:getX(), playerLocation:getY(), playerLocation:getZ(), range, 100);
     end
 end
 
@@ -193,7 +184,9 @@ local function HTC_tickHordeForPlayer(player, data)
     local minSpawnRange = SandboxVars.HereTheyCome.HordeMinSpawnDistance
     local maxSpawnRange = SandboxVars.HereTheyCome.HordeMaxSpawnDistance
     HTC_spawnZombieForPlayer(player, data.HordeAngle, minSpawnRange, maxSpawnRange, HTC_SPAWN_CONFIGS)
-    HTC_pulseOnPlayer(player, data)
+    if data.HordeTick % SandboxVars.HereTheyCome.PulseFrequency == 0 then
+        HTC_pulseOnPlayer(player, SandboxVars.HereTheyCome.PulseRange)
+    end
 end
 
 local function HTC_CheckHordeStatus()
@@ -202,8 +195,7 @@ local function HTC_CheckHordeStatus()
         if data.HordeZombiesRemaining > 0 then
             if data.HordeWarmup then
                 local now = HTC_getHoursSinceGameStart() * 60
-                local isHordeWarmumTimeOver = data.CurrentHordeStartTime + SandboxVars.HereTheyCome.HordeZombieWarnTime <= now
-                if isHordeWarmumTimeOver then
+                if data.CurrentHordeStartTime + SandboxVars.HereTheyCome.HordeZombieWarnTime <= now then
                     data.HordeWarmup = false
                     HTC_callForeEachPlayer(HTC_startHordeForPlayer, data)
                 end
@@ -211,7 +203,7 @@ local function HTC_CheckHordeStatus()
                 if data.HordeTick % SandboxVars.HereTheyCome.HordeZombieSpawnRate == 0 then
                     data.HordeZombiesRemaining = data.HordeZombiesRemaining - 1
                     HTC_callForeEachPlayer(HTC_tickHordeForPlayer, data)
-                    -- print("Remaining zombies to spawn:" .. tostring(data.HordeZombiesRemaining))
+                    print("Remaining zombies to spawn:" .. tostring(data.HordeZombiesRemaining))
                 end
             end
             data.HordeTick = data.HordeTick + 1
