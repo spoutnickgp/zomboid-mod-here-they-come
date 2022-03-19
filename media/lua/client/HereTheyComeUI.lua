@@ -134,6 +134,21 @@ local function HTC_onClientCommand(module, command, player, args)
     HTC_onCommand(module, command, args)
 end
 
+--local function HTC_UpdateModData(stuff)
+--    print("ModData Updated for "..tostring(stuff)..":"..tostring(stuff:getModData()))
+--end
+
+--local function HTC_ZombieUpdate(zombie)
+--    zombie:requestModData("isHordeZombie")
+--    local md = zombie:getModData()
+--
+--    print("ModData:")
+--    if md.isHordeZombie == true and md.initialPathingDone ~= true then
+--        print("Is horde zombie ?" .. tostring(md.isHordeZombie))
+--        md.initialPathingDone = true
+--        zombie:pathToCharacter(getPlayer())
+--    end
+--end
 
 if isServer() == false then
     print("Loading Here They Come client module hooks (client_mode: "..tostring(isClient())..")...")
@@ -145,5 +160,6 @@ if isServer() == false then
     else
         Events.OnServerCommand.Add(HTC_onServerCommand);
     end
-
+    --Events.onLoadModDataFromServer.Add(HTC_UpdateModData)
+    --Events.OnZombieUpdate.Add(HTC_ZombieUpdate)
 end

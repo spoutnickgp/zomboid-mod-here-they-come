@@ -21,7 +21,7 @@ Sandbox_EN = {
 	Sandbox_HTC_HordeFirstDay_tooltip = ""
 
     Sandbox_HTC_HordeNumWaves = "Number of waves"
-    Sandbox_HTC_HordeNumWaves_tooltip = ""
+    Sandbox_HTC_HordeNumWaves_tooltip = "Number of zombie waves per horde"
 
 	Sandbox_HTC_HordeWaveMinZombieCount = "Minimum number of zombies per horde"
 	Sandbox_HTC_HordeWaveMinZombieCount_tooltip = ""
@@ -29,8 +29,8 @@ Sandbox_EN = {
 	Sandbox_HTC_HordeWaveMaxZombieCount = "Maximum number of zombies per horde"
 	Sandbox_HTC_HordeWaveMaxZombieCount_tooltip = ""
 
-    Sandbox_HTC_HordeTimeBetweenWaves = "Horde time between waves"
-    Sandbox_HTC_HordeTimeBetweenWaves_tooltip = "Number of minutes between waves"
+    Sandbox_HTC_TimeBetweenWaves = "Horde time between waves"
+    Sandbox_HTC_TimeBetweenWaves_tooltip = "Number of minutes between waves"
 
 	Sandbox_HTC_HordeZombieIncrement = "Additional Zombies per horde"
 	Sandbox_HTC_HordeZombieIncrement_tooltip = "Additional number of zombies for each horde"
@@ -50,8 +50,8 @@ Sandbox_EN = {
 	Sandbox_HTC_HordeProgressIndicator = "Horde progress indicator"
 	Sandbox_HTC_HordeProgressIndicator_tooltip = ""
 
-    Sandbox_HordeZombieWarnTime = "Horde heads-up time"
-    Sandbox_HordeZombieWarnTime_tooltip = "Horde heads-up time in game minutes"
+    Sandbox_HTC_HordeWarnTime = "Horde heads-up time"
+    Sandbox_HTC_HordeWarnTime_tooltip = "Horde heads-up time in game minutes"
 
 	Sandbox_HTC_PulsePlayersDuringHorde = "Horde Pulse"
 	Sandbox_HTC_PulsePlayersDuringHorde_tooltip = "Silently pulse and draw zombies to player during Horde"
@@ -61,4 +61,10 @@ Sandbox_EN = {
 
 	Sandbox_HTC_TimeBetweenPulses = "Horde Noise Pulse Frequency"
 	Sandbox_HTC_TimeBetweenPulses_tooltip = "How many minutes between players noise pulses"
+
+    Sandbox_HTC_HordeWaveBatchSize = "Horde zombies per spawn batch"
+    Sandbox_HTC_HordeWaveBatchSize_tooltip = "Number of zombies per spawn batch"
+
+	Sandbox_HTC_HordeWaveBatchTicks = "Horde ticks between spawn batches"
+	Sandbox_HTC_HordeWaveBatchTicks_tooltip = "Delay in ticks between spawn batches"
 }

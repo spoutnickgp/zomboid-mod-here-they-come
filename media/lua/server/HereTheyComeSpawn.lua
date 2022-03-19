@@ -1,18 +1,6 @@
 
-function HTC_spawnZombieAt(player, spawnLocationX, spawnLocationY, outfit)
-    local zombies = addZombiesInOutfit(spawnLocationX, spawnLocationY, 0, 1, outfit, 50, false, false, false, false, 1.5);
-    for i = 1, zombies:size() do
-        local zombie = zombies:get(i - 1)
-        local zData = zombie:getModData()
-        zData.isHordeZombie = true
-        zData.x = player:getCurrentSquare():getX()
-        zData.y = player:getCurrentSquare():getY()
-        zData.z = player:getCurrentSquare():getZ()
-        zombie:setTarget(player)
-        zombie:spotted(player, true)
-        zombie:pathToCharacter(player)
-    end
-    return zombies
+function HTC_spawnZombieAt(spawnLocationX, spawnLocationY, outfit)
+    return addZombiesInOutfit(spawnLocationX, spawnLocationY, 0, 1, outfit, 50, false, false, false, false, 1.5);
 end
 
 function HTC_spawnZombiesForPlayer(player, baseAngle, minSpawnRange, maxSpawnRange, numZombies, available_outfits)
@@ -25,7 +13,7 @@ function HTC_spawnZombiesForPlayer(player, baseAngle, minSpawnRange, maxSpawnRan
     if playerLocation == nil then
         return
     end
-    for _ = 0, math.max(MAX_ATTEMPTS, numZombies) do
+    for _ = 0, math.min(MAX_ATTEMPTS, numZombies) do
         local offsetAngle = ZombRand(SandboxVars.HereTheyCome.HordeDirectionMaxAngle) - SandboxVars.HereTheyCome.HordeDirectionMaxAngle / 2
         local offsetRange = ZombRand(maxSpawnRange - minSpawnRange)
         local pos = HTC_getPointOnCircle(playerLocation:getX(), playerLocation:getY(), baseAngle + offsetAngle, minSpawnRange + offsetRange)
@@ -39,9 +27,21 @@ function HTC_spawnZombiesForPlayer(player, baseAngle, minSpawnRange, maxSpawnRan
                 local selectedOutfits = HTC_getSpawnOutfit(spawnLocationX, spawnLocationY, available_outfits)
                 local outfit = selectedOutfits[ZombRand(#selectedOutfits) + 1]
                 print("Spawning zombie of type "..outfit.." at location "..tostring(spawnLocationX)..", "..tostring(spawnLocationY))
-                HTC_spawnZombieAt(player, spawnLocationX, spawnLocationY, outfit)
+                local zombies = HTC_spawnZombieAt(spawnLocationX, spawnLocationY, outfit)
+                for i = 1, zombies:size() do
+                    local zombie = zombies:get(i - 1)
+                    local md = zombie:getModData()
+                    md.isHordeZombie = true
+                    if player:getCurrentSquare() ~= nil then
+                        md.hordeSearchX = player:getCurrentSquare():getX()
+                        md.hordeSearchY = player:getCurrentSquare():getY()
+                        md.hordeSearchZ = player:getCurrentSquare():getZ()
+                    end
+                    -- zombie:transmitModData()
+                end
                 spawnCount = spawnCount + 1
             end
         end
     end
+    return spawnCount
 end

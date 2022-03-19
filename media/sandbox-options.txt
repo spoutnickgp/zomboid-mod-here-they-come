@@ -87,7 +87,27 @@ option HereTheyCome.TimeBetweenWaves
 	max = 120,
 	default = 10,
 	page = ZombieAdvanced,
-	translation = HTC_HordeTimeBetweenWaves,
+	translation = HTC_TimeBetweenWaves,
+}
+
+option HereTheyCome.HordeWaveBatchTicks
+{
+	type = integer,
+	min = 1,
+	max = 1200,
+	default = 100,
+	page = ZombieAdvanced,
+	translation = HTC_HordeWaveBatchTicks,
+}
+
+option HereTheyCome.HordeWaveBatchSize
+{
+	type = integer,
+	min = 1,
+	max = 100,
+	default = 5,
+	page = ZombieAdvanced,
+	translation = HTC_HordeWaveBatchSize,
 }
 
 option HereTheyCome.HordeWaveMinZombieCount
@@ -148,14 +168,14 @@ option HereTheyCome.HordeProgressIndicator
 	translation = HTC_HordeProgressIndicator,
 }
 
-option HereTheyCome.HordeZombieWarnTime
+option HereTheyCome.HordeWarnTime
 {
     type = integer,
     min = 5,
     max = 180,
     default = 20,
     page = ZombieAdvanced,
-    translation = HTC_HordeZombieWarnTime
+    translation = HTC_HordeWarnTime
 }
 
 option HereTheyCome.HordeDirectionMaxAngle
