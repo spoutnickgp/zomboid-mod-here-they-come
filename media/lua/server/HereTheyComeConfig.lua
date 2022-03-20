@@ -315,7 +315,8 @@ HTC_SPAWN_CONFIGS = {
         "PrisonGuard",
         "MetalWorker",
         "PoliceState",
-        "Fisherman"
+        "Fisherman",
+        "Ranger",
     },
     Default = {
         "TutorialMom",

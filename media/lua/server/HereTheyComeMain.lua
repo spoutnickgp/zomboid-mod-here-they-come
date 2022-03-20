@@ -104,7 +104,7 @@ local function HTC_sendCommandToPlayer(player, data, command)
     local hordeData = {
         intensity = data.HordeIntensity,
         horde_number = data.HordeNumber,
-        wave_number = data.WaveNumber,
+        wave_number = data.HordeWave,
         angle = data.HordeAngle,
         onoff = data.HordeActive,
         progress = data.HordeProgress,

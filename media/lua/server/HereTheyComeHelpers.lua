@@ -12,11 +12,26 @@ function HTC_getSpawnOutfit(x, y, available_outfits)
     if zone ~= nil then
         zoneType = getZone(x, y, 0):getType()
     end
+    if zoneType == "Nav" then
+        return available_outfits.Nav
+    end
+    if zoneType == "Forest" then
+        return available_outfits.Forest
+    end
     if zoneType == "DeepForest" then
         return available_outfits.DeepForest
     end
     if zoneType == "TownZone" then
         return available_outfits.TownZone
+    end
+    if zoneType == "Farm" then
+        return available_outfits.Farm
+    end
+    if zoneType == "Vegitation" then
+        return available_outfits.Vegitation
+    end
+    if zoneType == "TrailerPark" then
+        return available_outfits.TrailerPark
     end
     return available_outfits.Default
 end
