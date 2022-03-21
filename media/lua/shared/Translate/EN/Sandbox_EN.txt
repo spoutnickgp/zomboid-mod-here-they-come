@@ -1,70 +1,69 @@
 Sandbox_EN = {
-	Sandbox_HTC_HordeCooldown = "Cooldown between hordes"
-	Sandbox_HTC_HordeCooldown_tooltip = "Cooldown between two hordes in game minutes"
+	Sandbox_HereTheyCome = "Here They Come"
+	Sandbox_HereTheyCome_HordeCooldown = "Cooldown"
+	Sandbox_HereTheyCome_HordeCooldown_tooltip = "Cooldown between two hordes in game minutes"
 
-	Sandbox_HTC_HordeMinHour = "Min Horde Starting Hour"
-	Sandbox_HTC_HordeMinHour_tooltip = "Min hour of day at which the HordeNight may happen"
+	Sandbox_HereTheyCome_HordeMinHour = "Min Starting Hour"
+	Sandbox_HereTheyCome_HordeMinHour_tooltip = "Min hour of day at which the Horde may happen"
 
-	Sandbox_HTC_HordeMaxHour = "Max Horde Starting Hour"
-	Sandbox_HTC_HordeMaxHour_tooltip = "Max hour of day at which the HordeNight may happend""
+	Sandbox_HereTheyCome_HordeMaxHour = "Max Starting Hour"
+	Sandbox_HereTheyCome_HordeMaxHour_tooltip = "Max hour of day at which the Horde may happend"
 
-    Sandbox_HTC_HordeMinHourlyProgress = "Horde accumulator minimum hourly progress"
-    Sandbox_HTC_HordeMinHourlyProgress_tooltip = ""
+    Sandbox_HereTheyCome_HordeMinHourlyProgress = "Minimum hourly progress"
+    Sandbox_HereTheyCome_HordeMinHourlyProgress_tooltip = "Minimum amount of agitation per hour"
 
-    Sandbox_HTC_HordeMaxHourlyProgress = "Horde accumulator maximum hourly progress"
-    Sandbox_HTC_HordeMaxHourlyProgress_tooltip = ""
+    Sandbox_HereTheyCome_HordeMaxHourlyProgress = "Maximum hourly progress"
+    Sandbox_HereTheyCome_HordeMaxHourlyProgress_tooltip = "Maximum amount of agitation per hour"
 
-    Sandbox_HTC_HordeTriggerThreshold = "Horde trigger threshold"
-    Sandbox_HTC_HordeTriggerThreshold_tooltip = ""
+    Sandbox_HereTheyCome_HordeTriggerThreshold = "Trigger threshold"
+    Sandbox_HereTheyCome_HordeTriggerThreshold_tooltip = "Horde agitation trigger threshold"
 
-	Sandbox_HTC_HordeFirstDay = "First day at which a horde may appear"
-	Sandbox_HTC_HordeFirstDay_tooltip = ""
+	Sandbox_HereTheyCome_HordeFirstDay = "First day"
+	Sandbox_HereTheyCome_HordeFirstDay_tooltip = "First day at which a horde may appear"
 
-    Sandbox_HTC_HordeNumWaves = "Number of waves"
-    Sandbox_HTC_HordeNumWaves_tooltip = "Number of zombie waves per horde"
+    Sandbox_HereTheyCome_HordeNumWaves = "Number of waves"
+    Sandbox_HereTheyCome_HordeNumWaves_tooltip = "Number of zombie waves per horde"
 
-	Sandbox_HTC_HordeWaveMinZombieCount = "Minimum number of zombies per horde"
-	Sandbox_HTC_HordeWaveMinZombieCount_tooltip = ""
+	Sandbox_HereTheyCome_HordeWaveMinZombieCount = "Minimum zombies"
+	Sandbox_HereTheyCome_HordeWaveMinZombieCount_tooltip = "Minimum amount of zombies per wave"
 
-	Sandbox_HTC_HordeWaveMaxZombieCount = "Maximum number of zombies per horde"
-	Sandbox_HTC_HordeWaveMaxZombieCount_tooltip = ""
+	Sandbox_HereTheyCome_HordeWaveMaxZombieCount = "Maximum zombies"
+	Sandbox_HereTheyCome_HordeWaveMaxZombieCount_tooltip = "Maximum amount of zombies per wave"
 
-    Sandbox_HTC_TimeBetweenWaves = "Horde time between waves"
-    Sandbox_HTC_TimeBetweenWaves_tooltip = "Number of minutes between waves"
+	Sandbox_HereTheyCome_HordeZombieIncrement = "Additional Zombies per horde"
+	Sandbox_HereTheyCome_HordeZombieIncrement_tooltip = "Additional number of maximum zombies for each horde"
 
-	Sandbox_HTC_HordeZombieIncrement = "Additional Zombies per horde"
-	Sandbox_HTC_HordeZombieIncrement_tooltip = "Additional number of zombies for each horde"
+    Sandbox_HereTheyCome_TimeBetweenWaves = "Time between waves"
+    Sandbox_HereTheyCome_TimeBetweenWaves_tooltip = "Number of minutes between waves"
 
-	Sandbox_HTC_HordeZombieSpawnRate = "Horde spawn rate"
-	Sandbox_HTC_HordeZombieSpawnRate_tooltip = "Number of ticks between zombie spawns when horde is active"
+	Sandbox_HereTheyCome_HordeMinSpawnDistance = "Minimum spawn distance"
+	Sandbox_HereTheyCome_HordeMinSpawnDistance_tooltip = "Minimum wave spawn distance"
 
-	Sandbox_HTC_HordeMinSpawnDistance = "Minimum horde spawn distance"
-	Sandbox_HTC_HordeMinSpawnDistance_tooltip = ""
+	Sandbox_HereTheyCome_HordeMaxSpawnDistance = "Maximum horde spawn distance"
+	Sandbox_HereTheyCome_HordeMaxSpawnDistance_tooltip = "Maximum wave spawn distance"
 
-	Sandbox_HTC_HordeMaxSpawnDistance = "Maximum horde spawn distance"
-	Sandbox_HTC_HordeMaxSpawnDistance_tooltip = ""
+	Sandbox_HereTheyCome_HordeDirectionMaxAngle = "Horde Angle Spread"
+	Sandbox_HereTheyCome_HordeDirectionMaxAngle_tooltip = "Max angle at which the wave origin may be focused"
 
-	Sandbox_HTC_HordeDirectionMaxAngle = "Horde Angle Spread"
-	Sandbox_HTC_HordeDirectionMaxAngle_tooltip = "Max angle at which the horde origin may be focused"
+    Sandbox_HereTheyCome_HordeWaveBatchSize = "Zombies per spawn batch"
+    Sandbox_HereTheyCome_HordeWaveBatchSize_tooltip = "Number of zombies per spawn batch"
 
-	Sandbox_HTC_HordeProgressIndicator = "Horde progress indicator"
-	Sandbox_HTC_HordeProgressIndicator_tooltip = ""
+	Sandbox_HereTheyCome_HordeWaveBatchTicks = "Spawn Rate"
+	Sandbox_HereTheyCome_HordeWaveBatchTicks_tooltip = "Delay in ticks between spawn batches"
 
-    Sandbox_HTC_HordeWarnTime = "Horde heads-up time"
-    Sandbox_HTC_HordeWarnTime_tooltip = "Horde heads-up time in game minutes"
+	Sandbox_HereTheyCome_HordeProgressIndicator = "Horde progress indicator"
+	Sandbox_HereTheyCome_HordeProgressIndicator_tooltip = "Whether to display the horde agitation icon or not"
 
-	Sandbox_HTC_PulsePlayersDuringHorde = "Horde Pulse"
-	Sandbox_HTC_PulsePlayersDuringHorde_tooltip = "Silently pulse and draw zombies to player during Horde"
+    Sandbox_HereTheyCome_HordeWarnTime = "Heads-up time"
+    Sandbox_HereTheyCome_HordeWarnTime_tooltip = "Number of minutes after the event before the first wave starts"
 
-	Sandbox_HTC_PulseRange = "Horde Pulse Range"
-	Sandbox_HTC_PulseRange_tooltip = "Range of the pulse pulling zombies to players"
+	Sandbox_HereTheyCome_PulsePlayersDuringHorde = "Noise pulse on player"
+	Sandbox_HereTheyCome_PulsePlayersDuringHorde_tooltip = "Silently pulse and draw zombies to player during Horde"
 
-	Sandbox_HTC_TimeBetweenPulses = "Horde Noise Pulse Frequency"
-	Sandbox_HTC_TimeBetweenPulses_tooltip = "How many minutes between players noise pulses"
+	Sandbox_HereTheyCome_PulseRange = "Pulse Range"
+	Sandbox_HereTheyCome_PulseRange_tooltip = "Range of the pulse pulling zombies to players"
 
-    Sandbox_HTC_HordeWaveBatchSize = "Horde zombies per spawn batch"
-    Sandbox_HTC_HordeWaveBatchSize_tooltip = "Number of zombies per spawn batch"
+	Sandbox_HereTheyCome_TimeBetweenPulses = "Noise Pulse Frequency"
+	Sandbox_HereTheyCome_TimeBetweenPulses_tooltip = "How many minutes between noise pulses"
 
-	Sandbox_HTC_HordeWaveBatchTicks = "Horde ticks between spawn batches"
-	Sandbox_HTC_HordeWaveBatchTicks_tooltip = "Delay in ticks between spawn batches"
 }

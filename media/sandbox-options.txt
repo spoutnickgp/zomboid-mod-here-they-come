@@ -6,8 +6,8 @@ option HereTheyCome.HordeCooldown
 	min = 0,
 	max = 72000,
 	default = 4320,
-	page = ZombieAdvanced,
-	translation = HTC_HordeCooldown,
+	page = HereTheyCome,
+	translation = HereTheyCome_HordeCooldown,
 }
 
 option HereTheyCome.HordeMinHour
@@ -16,8 +16,8 @@ option HereTheyCome.HordeMinHour
 	min = 0,
 	max = 23,
 	default = 3,
-	page = ZombieAdvanced,
-	translation = HTC_HordeMinHour,
+	page = HereTheyCome,
+	translation = HereTheyCome_HordeMinHour,
 }
 
 option HereTheyCome.HordeMaxHour
@@ -26,8 +26,8 @@ option HereTheyCome.HordeMaxHour
 	min = 0,
 	max = 23,
 	default = 6,
-	page = ZombieAdvanced,
-	translation = HTC_HordeMaxHour,
+	page = HereTheyCome,
+	translation = HereTheyCome_HordeMaxHour,
 }
 
 option HereTheyCome.HordeMinHourlyProgress
@@ -36,8 +36,8 @@ option HereTheyCome.HordeMinHourlyProgress
     min = 0,
     max = 10000,
     default = 0,
-    page = ZombieAdvanced,
-    translation = HTC_HordeMinHourlyProgress,
+    page = HereTheyCome,
+    translation = HereTheyCome_HordeMinHourlyProgress,
 }
 
 option HereTheyCome.HordeMaxHourlyProgress
@@ -46,8 +46,8 @@ option HereTheyCome.HordeMaxHourlyProgress
     min = 0,
     max = 10000,
     default = 500,
-    page = ZombieAdvanced,
-    translation = HTC_HordeMaxHourlyProgress,
+    page = HereTheyCome,
+    translation = HereTheyCome_HordeMaxHourlyProgress,
 }
 
 option HereTheyCome.HordeTriggerThreshold
@@ -56,8 +56,8 @@ option HereTheyCome.HordeTriggerThreshold
     min = 0,
     max = 10000,
     default = 5000,
-    page = ZombieAdvanced,
-    translation = HTC_HordeTriggerThreshold,
+    page = HereTheyCome,
+    translation = HereTheyCome_HordeTriggerThreshold,
 }
 
 option HereTheyCome.HordeFirstDay
@@ -66,8 +66,8 @@ option HereTheyCome.HordeFirstDay
 	min = 0,
 	max = 365,
 	default = 20,
-	page = ZombieAdvanced,
-	translation = HTC_HordeFirstDay,
+	page = HereTheyCome,
+	translation = HereTheyCome_HordeFirstDay,
 }
 
 option HereTheyCome.HordeNumWaves
@@ -76,8 +76,8 @@ option HereTheyCome.HordeNumWaves
 	min = 1,
 	max = 10,
 	default = 3,
-	page = ZombieAdvanced,
-	translation = HTC_HordeNumWaves,
+	page = HereTheyCome,
+	translation = HereTheyCome_HordeNumWaves,
 }
 
 option HereTheyCome.TimeBetweenWaves
@@ -86,8 +86,8 @@ option HereTheyCome.TimeBetweenWaves
 	min = 1,
 	max = 120,
 	default = 30,
-	page = ZombieAdvanced,
-	translation = HTC_TimeBetweenWaves,
+	page = HereTheyCome,
+	translation = HereTheyCome_TimeBetweenWaves,
 }
 
 option HereTheyCome.HordeWaveBatchTicks
@@ -96,8 +96,8 @@ option HereTheyCome.HordeWaveBatchTicks
 	min = 1,
 	max = 1200,
 	default = 100,
-	page = ZombieAdvanced,
-	translation = HTC_HordeWaveBatchTicks,
+	page = HereTheyCome,
+	translation = HereTheyCome_HordeWaveBatchTicks,
 }
 
 option HereTheyCome.HordeWaveBatchSize
@@ -106,8 +106,8 @@ option HereTheyCome.HordeWaveBatchSize
 	min = 1,
 	max = 100,
 	default = 3,
-	page = ZombieAdvanced,
-	translation = HTC_HordeWaveBatchSize,
+	page = HereTheyCome,
+	translation = HereTheyCome_HordeWaveBatchSize,
 }
 
 option HereTheyCome.HordeWaveMinZombieCount
@@ -116,8 +116,8 @@ option HereTheyCome.HordeWaveMinZombieCount
 	min = 1,
 	max = 300,
 	default = 10,
-	page = ZombieAdvanced,
-	translation = HTC_HordeWaveMinZombieCount,
+	page = HereTheyCome,
+	translation = HereTheyCome_HordeWaveMinZombieCount,
 }
 
 option HereTheyCome.HordeWaveMaxZombieCount
@@ -126,8 +126,8 @@ option HereTheyCome.HordeWaveMaxZombieCount
 	min = 0,
 	max = 300,
 	default = 50,
-	page = ZombieAdvanced,
-	translation = HTC_HordeWaveMaxZombieCount,
+	page = HereTheyCome,
+	translation = HereTheyCome_HordeWaveMaxZombieCount,
 }
 
 option HereTheyCome.HordeZombieIncrement
@@ -136,8 +136,8 @@ option HereTheyCome.HordeZombieIncrement
 	min = 0,
 	max = 100,
 	default = 1,
-	page = ZombieAdvanced,
-	translation = HTC_HordeZombieIncrement,
+	page = HereTheyCome,
+	translation = HereTheyCome_HordeZombieIncrement,
 }
 
 option HereTheyCome.HordeMinSpawnDistance
@@ -146,8 +146,8 @@ option HereTheyCome.HordeMinSpawnDistance
 	min = 5,
 	max = 200,
 	default = 100,
-	page = ZombieAdvanced,
-	translation = HTC_HordeMinSpawnDistance,
+	page = HereTheyCome,
+	translation = HereTheyCome_HordeMinSpawnDistance,
 }
 
 option HereTheyCome.HordeMaxSpawnDistance
@@ -156,16 +156,16 @@ option HereTheyCome.HordeMaxSpawnDistance
 	min = 5,
 	max = 200,
 	default = 150,
-	page = ZombieAdvanced,
-	translation = HTC_HordeMaxSpawnDistance,
+	page = HereTheyCome,
+	translation = HereTheyCome_HordeMaxSpawnDistance,
 }
 
 option HereTheyCome.HordeProgressIndicator
 {
 	type = boolean,
 	default = true,
-	page = ZombieAdvanced,
-	translation = HTC_HordeProgressIndicator,
+	page = HereTheyCome,
+	translation = HereTheyCome_HordeProgressIndicator,
 }
 
 option HereTheyCome.HordeWarnTime
@@ -174,8 +174,8 @@ option HereTheyCome.HordeWarnTime
     min = 5,
     max = 180,
     default = 10,
-    page = ZombieAdvanced,
-    translation = HTC_HordeWarnTime
+    page = HereTheyCome,
+    translation = HereTheyCome_HordeWarnTime
 }
 
 option HereTheyCome.HordeDirectionMaxAngle
@@ -184,16 +184,16 @@ option HereTheyCome.HordeDirectionMaxAngle
     min = 0,
     max = 360,
     default = 30,
-    page = ZombieAdvanced,
-    translation = HTC_HordeDirectionMaxAngle,
+    page = HereTheyCome,
+    translation = HereTheyCome_HordeDirectionMaxAngle,
 }
 
 option HereTheyCome.PulsePlayersDuringHorde
 {
 	type = boolean,
 	default = true,
-	page = ZombieAdvanced,
-	translation = HTC_PulsePlayersDuringHorde,
+	page = HereTheyCome,
+	translation = HereTheyCome_PulsePlayersDuringHorde,
 }
 
 option HereTheyCome.PulseRange
@@ -202,8 +202,8 @@ option HereTheyCome.PulseRange
 	min = 5,
 	max = 200,
 	default = 50,
-	page = ZombieAdvanced,
-	translation = HTC_PulseRange,
+	page = HereTheyCome,
+	translation = HereTheyCome_PulseRange,
 }
 
 option HereTheyCome.TimeBetweenPulses
@@ -212,6 +212,6 @@ option HereTheyCome.TimeBetweenPulses
 	min = 1,
 	max = 120,
 	default = 10,
-	page = ZombieAdvanced,
-	translation = HTC_TimeBetweenPulses,
+	page = HereTheyCome,
+	translation = HereTheyCome_TimeBetweenPulses,
 }
