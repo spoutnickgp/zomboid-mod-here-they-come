@@ -45,7 +45,7 @@ option HereTheyCome.HordeMaxHourlyProgress
     type = integer,
     min = 0,
     max = 10000,
-    default = 500,
+    default = 250,
     page = HereTheyCome,
     translation = HereTheyCome_HordeMaxHourlyProgress,
 }
@@ -75,7 +75,7 @@ option HereTheyCome.HordeNumWaves
 	type = integer,
 	min = 1,
 	max = 10,
-	default = 3,
+	default = 5,
 	page = HereTheyCome,
 	translation = HereTheyCome_HordeNumWaves,
 }
@@ -145,7 +145,7 @@ option HereTheyCome.HordeMinSpawnDistance
 	type = integer,
 	min = 5,
 	max = 200,
-	default = 100,
+	default = 75,
 	page = HereTheyCome,
 	translation = HereTheyCome_HordeMinSpawnDistance,
 }
@@ -155,7 +155,7 @@ option HereTheyCome.HordeMaxSpawnDistance
 	type = integer,
 	min = 5,
 	max = 200,
-	default = 150,
+	default = 100,
 	page = HereTheyCome,
 	translation = HereTheyCome_HordeMaxSpawnDistance,
 }
@@ -168,6 +168,14 @@ option HereTheyCome.HordeProgressIndicator
 	translation = HereTheyCome_HordeProgressIndicator,
 }
 
+option HereTheyCome.HordeWarnText
+{
+	type = boolean,
+	default = true,
+    page = HereTheyCome,
+    translation = HereTheyCome_HordeWarnText,
+}
+
 option HereTheyCome.HordeWarnTime
 {
     type = integer,
@@ -175,7 +183,7 @@ option HereTheyCome.HordeWarnTime
     max = 180,
     default = 10,
     page = HereTheyCome,
-    translation = HereTheyCome_HordeWarnTime
+    translation = HereTheyCome_HordeWarnTime,
 }
 
 option HereTheyCome.HordeDirectionMaxAngle

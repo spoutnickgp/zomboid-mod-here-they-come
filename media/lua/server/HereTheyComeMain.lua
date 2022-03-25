@@ -3,6 +3,7 @@ require "HereTheyComeSpawn"
 require "HereTheyComeHelpers"
 
 local HTC_STATE_KEY = "HTC_State"
+local PULSE_VOLUME = 400
 
 local function HTC_ServerSetup()
     print("Setup Server Defaults for Horde Mode")
@@ -181,7 +182,7 @@ local function HTC_pulseOnPlayer(player, _)
                 playerLocation:getY(),
                 playerLocation:getZ(),
                 SandboxVars.HereTheyCome.PulseRange,
-                100);
+                PULSE_VOLUME);
     end
 end
 
@@ -228,11 +229,15 @@ local function HTC_CheckHordeStatus()
             else
                 if data.CurrentWaveStartTime + SandboxVars.HereTheyCome.TimeBetweenWaves <= now then
                     data.CurrentWaveStartTime = now
-                    HTC_callForEachPlayer(HTC_startWaveForPlayer, data)
+                    -- Exception for last wave
+                    if data.HordeWave ~= SandboxVars.HereTheyCome.HordeNumWaves then
+                        HTC_callForEachPlayer(HTC_startWaveForPlayer, data)
+                    end
                     data.HordeWave = data.HordeWave + 1
                     data.WaveTick = 0
+                else
+                    HTC_callForEachPlayer(HTC_tickWaveForPlayer, data)
                 end
-                HTC_callForEachPlayer(HTC_tickWaveForPlayer, data)
                 if data.CurrentPulseStartTime + SandboxVars.HereTheyCome.TimeBetweenPulses <= now then
                     data.CurrentPulseStartTime = now
                     HTC_callForEachPlayer(HTC_pulseOnPlayer, data)
@@ -240,7 +245,7 @@ local function HTC_CheckHordeStatus()
                 data.WaveTick = data.WaveTick + 1
             end
         else
-            HTC_endHorde(data, day)
+            HTC_endHorde(data)
         end
     end
 end

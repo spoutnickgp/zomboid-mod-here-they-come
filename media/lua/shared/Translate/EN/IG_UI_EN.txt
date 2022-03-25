@@ -21,7 +21,7 @@ IGUI_EN = {
     IGUI_PlayerText_HTCStartReaction_02 = "Another wave!"
     IGUI_PlayerText_HTCStartReaction_03 = "And again!"
 
-    IGUI_PlayerText_HTCStartReaction_01 = "Finally! I think we're through. These are the last ones."
-    IGUI_PlayerText_HTCStartReaction_02 = "They've stopped coming, it seems. These are the last ones."
-    IGUI_PlayerText_HTCStartReaction_03 = "It's over. These are the last ones."
+    IGUI_PlayerText_HTCEndReaction_01 = "Finally! I think we're through. These are the last ones."
+    IGUI_PlayerText_HTCEndReaction_02 = "They've stopped coming, it seems. These are the last ones."
+    IGUI_PlayerText_HTCEndReaction_03 = "It's over. These are the last ones."
 }

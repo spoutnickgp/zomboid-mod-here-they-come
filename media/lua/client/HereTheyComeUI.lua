@@ -1,4 +1,4 @@
-local SOUND_OFFSET_RANGE = 5
+local SOUND_OFFSET_RANGE = 50
 local NUM_TEXT_LINES = 3
 local SAFE_DISPLAY_THRESHOLD = 20
 local WARNING_DISPLAY_THRESHOLD = 80
@@ -69,33 +69,30 @@ end
 local function HTC_displayWarningText(angle, variation)
     local direction_text = getText("IGUI_PlayerText_HTCDirection_" .. math.floor(angle % 360 / 45))
     local preText = getText("IGUI_PlayerText_HTCWarmupReactionPre_0" .. tostring(variation))
-    local postText =  getText("IGUI_PlayerText_HTCWarmupReactionPost_0" .. tostring(variation))
-    local text =preText .. direction_text .. postText
-    getPlayer():Say(text);
+    local postText = getText("IGUI_PlayerText_HTCWarmupReactionPost_0" .. tostring(variation))
+    local text = preText .. direction_text .. postText
+    if SandboxVars.HereTheyCome.HordeWarnText == true then
+        getPlayer():Say(text);
+    end
 end
 
 local function HTC_displayStartText(variation)
-    getPlayer():Say(getText("IGUI_PlayerText_HTCStartReaction_0" .. tostring(variation)));
+    if SandboxVars.HereTheyCome.HordeWarnText == true then
+        getPlayer():Say(getText("IGUI_PlayerText_HTCStartReaction_0" .. tostring(variation)));
+    end
 end
 
-
 local function HTC_displayEndText(variation)
-    getPlayer():Say(getText("IGUI_PlayerText_HTCEndReaction_0" .. tostring(variation)));
+    if SandboxVars.HereTheyCome.HordeWarnText == true then
+        getPlayer():Say(getText("IGUI_PlayerText_HTCEndReaction_0" .. tostring(variation)));
+    end
 end
 
 local function HTC_playWarningSound(angle, variation)
     local soundOrigin = HTC_getPointOnCircle(getPlayer():getX(), getPlayer():getY(), angle, SOUND_OFFSET_RANGE)
     local originSquare = getWorld():getCell():getGridSquare(soundOrigin.x, soundOrigin.y, 0)
     if originSquare ~= nil then
-        getAmbientStreamManager():addAmbient("event_sound_0"..tostring(variation), soundOrigin.x, soundOrigin.y, 0, 100.0)
-    end
-end
-
-local function HTC_playStartSound(angle, variation)
-    local soundOrigin = HTC_getPointOnCircle(getPlayer():getX(), getPlayer():getY(), angle, SOUND_OFFSET_RANGE)
-    local originSquare = getWorld():getCell():getGridSquare(soundOrigin.x, soundOrigin.y, 0)
-    if originSquare ~= nil then
-        getAmbientStreamManager():addAmbient("Meta/Wolf", soundOrigin.x, soundOrigin.y, 0, 100.0)
+        getAmbientStreamManager():addAmbient("EventTrigger0"..tostring(variation), soundOrigin.x, soundOrigin.y, 0, 100.0)
     end
 end
 
@@ -105,13 +102,13 @@ local function HTC_onCommand(module, command, args)
     end
     if command == "HTCHordeWarn" then
         local variation = ZombRand(NUM_TEXT_LINES) + 1
+        
         HTC_playWarningSound(args["angle"], variation)
         HTC_displayWarningText(args["angle"], variation)
     end
     if command == "HTCHordeStart" then
         getPlayer():getModData().HTC_HordeState = true
         local variation = ZombRand(NUM_TEXT_LINES) + 1
-        HTC_playStartSound(args["angle"], variation)
         if args["wave_number"] == 1 then
             HTC_displayStartText(0)
         else

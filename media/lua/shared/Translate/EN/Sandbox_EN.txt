@@ -54,6 +54,9 @@ Sandbox_EN = {
 	Sandbox_HereTheyCome_HordeProgressIndicator = "Horde progress indicator"
 	Sandbox_HereTheyCome_HordeProgressIndicator_tooltip = "Whether to display the horde agitation icon or not"
 
+	Sandbox_HereTheyCome_HordeWarnText = "Heads-up Text"
+	Sandbox_HereTheyCome_HordeWarnText_tooltip = "Displays a warning text when horde starts/progresses"
+
     Sandbox_HereTheyCome_HordeWarnTime = "Heads-up time"
     Sandbox_HereTheyCome_HordeWarnTime_tooltip = "Number of minutes after the event before the first wave starts"
 
