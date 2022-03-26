@@ -5,7 +5,7 @@ option HereTheyCome.HordeCooldown
 	type = integer,
 	min = 0,
 	max = 72000,
-	default = 4320,
+	default = 8640,
 	page = HereTheyCome,
 	translation = HereTheyCome_HordeCooldown,
 }
@@ -105,7 +105,7 @@ option HereTheyCome.HordeWaveBatchSize
 	type = integer,
 	min = 1,
 	max = 100,
-	default = 3,
+	default = 5,
 	page = HereTheyCome,
 	translation = HereTheyCome_HordeWaveBatchSize,
 }
@@ -115,7 +115,7 @@ option HereTheyCome.HordeWaveMinZombieCount
 	type = integer,
 	min = 1,
 	max = 300,
-	default = 10,
+	default = 30,
 	page = HereTheyCome,
 	translation = HereTheyCome_HordeWaveMinZombieCount,
 }
@@ -125,7 +125,7 @@ option HereTheyCome.HordeWaveMaxZombieCount
 	type = integer,
 	min = 0,
 	max = 300,
-	default = 50,
+	default = 75,
 	page = HereTheyCome,
 	translation = HereTheyCome_HordeWaveMaxZombieCount,
 }
@@ -209,7 +209,7 @@ option HereTheyCome.PulseRange
 	type = integer,
 	min = 5,
 	max = 200,
-	default = 50,
+	default = 100,
 	page = HereTheyCome,
 	translation = HereTheyCome_PulseRange,
 }
