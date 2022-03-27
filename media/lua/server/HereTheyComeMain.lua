@@ -107,7 +107,8 @@ local function HTC_sendCommandToPlayer(player, data, command)
         horde_number = data.HordeNumber,
         wave_number = data.HordeWave,
         angle = data.HordeAngle,
-        onoff = data.HordeActive,
+        is_active = data.HordeActive,
+        is_possible = HTC_isHordePossible(data.LastHordeEndTime),
         progress = data.HordeProgress,
         threshold = SandboxVars.HereTheyCome.HordeTriggerThreshold
     }
@@ -191,8 +192,8 @@ local function HTC_warmupWaveForPlayer(player, _)
 end
 
 local function HTC_startWaveForPlayer(player, data)
-    local minZombies = SandboxVars.HereTheyCome.HordeWaveMinZombieCount
-    local addedZombies = data.HordeIntensity * math.abs(SandboxVars.HereTheyCome.HordeWaveMaxZombieCount - SandboxVars.HereTheyCome.HordeWaveMinZombieCount) * data.HordeNumber / 100
+    local minZombies = SandboxVars.HereTheyCome.HordeWaveMinZombieCount + SandboxVars.HereTheyCome.HordeZombieIncrement * data.HordeNumber
+    local addedZombies = data.HordeIntensity / 100 * math.abs(SandboxVars.HereTheyCome.HordeWaveMaxZombieCount - minZombies)
     player:getModData().remainingZombies = minZombies + addedZombies
     HTC_sendStartToPlayer(player, data)
 end

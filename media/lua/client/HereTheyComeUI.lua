@@ -19,6 +19,7 @@ local function HTC_ClientSetup()
     getPlayer():getModData().HTC_Indicator_Safe = HTC_IndicatorNew(getCore():getScreenWidth() - 210, 12, 32, 32, Texture.getSharedTexture("media/ui/HTC_safe_horde.png"));
     getPlayer():getModData().HTC_Indicator_Warning = HTC_IndicatorNew(getCore():getScreenWidth() - 210, 12, 32, 32, Texture.getSharedTexture("media/ui/HTC_warning_horde.png"));
     getPlayer():getModData().HTC_Indicator_Active = HTC_IndicatorNew(getCore():getScreenWidth() - 210, 12, 32, 32, Texture.getSharedTexture("media/ui/HTC_active_horde.png"));
+    getPlayer():getModData().HTC_Indicator_Barred = HTC_IndicatorNew(getCore():getScreenWidth() - 210, 12, 32, 32, Texture.getSharedTexture("media/ui/HTC_barred_horde.png"));
     HTC_IndicatorUpdate();
 end
 
@@ -38,25 +39,29 @@ function HTC_IndicatorUpdate()
     local safe_indicator = getPlayer():getModData().HTC_Indicator_Safe;
     local warning_indicator = getPlayer():getModData().HTC_Indicator_Warning;
     local active_indicator = getPlayer():getModData().HTC_Indicator_Active;
-    if safe_indicator == nil or warning_indicator == nil or active_indicator == nil then
-        return
-    end
+    local barred_indicator = getPlayer():getModData().HTC_Indicator_Barred;
+
     if SandboxVars.HereTheyCome.HordeProgressIndicator == false then
         active_indicator.image:setVisible(false);
         safe_indicator.image:setVisible(false);
         warning_indicator.image:setVisible(false);
+        barred_indicator.image:setVisible(false);
         return
     end
     if getPlayer():getModData().HTC_HordeState == true then
         active_indicator.image:setVisible(true);
         warning_indicator.image:setVisible(false);
         safe_indicator.image:setVisible(false);
+        barred_indicator.image:setVisible(false);
     else
         active_indicator.image:setVisible(false);
         if getPlayer():getModData().HTC_HordeProgress ~= nil then
             if getPlayer():getModData().HTC_HordeProgress >= SAFE_DISPLAY_THRESHOLD then
                 safe_indicator.image:setVisible(true);
                 warning_indicator.image:setVisible(false);
+                if getPlayer():getModData().HTC_HordeTime == false then
+                    barred_indicator.image:setVisible(true)
+                end
             end
             if getPlayer():getModData().HTC_HordeProgress >= WARNING_DISPLAY_THRESHOLD then
                 safe_indicator.image:setVisible(false);
@@ -130,7 +135,8 @@ local function HTC_onCommand(module, command, args)
     end
 
     if command == "HTCHordeState" then
-        getPlayer():getModData().HTC_HordeState = args["onoff"]
+        getPlayer():getModData().HTC_HordeState = args["is_active"]
+        getPlayer():getModData().HTC_HordeTime = args["is_possible"]
         --print("Horde State="..tostring(getPlayer():getModData().HTC_HordeState)..", progress=" .. tostring(args["progress"]) .. "/" .. tostring(args["threshold"]))
         getPlayer():getModData().HTC_HordeProgress = args["progress"] / math.max(1, args["threshold"]) * 100
         HTC_IndicatorUpdate()

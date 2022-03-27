@@ -15,7 +15,7 @@ option HereTheyCome.HordeMinHour
 	type = integer,
 	min = 0,
 	max = 23,
-	default = 3,
+	default = 0,
 	page = HereTheyCome,
 	translation = HereTheyCome_HordeMinHour,
 }
@@ -55,7 +55,7 @@ option HereTheyCome.HordeTriggerThreshold
     type = integer,
     min = 0,
     max = 10000,
-    default = 5000,
+    default = 1000,
     page = HereTheyCome,
     translation = HereTheyCome_HordeTriggerThreshold,
 }
