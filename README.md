@@ -1,6 +1,13 @@
 CHANGELOG:
 
-2022-03-01 - Initial beta release
+2022-03-27 - v0.2
+- New display icon for horde status
+- Fix horde size increment calculation
+- Adjust default time frame
+- Increase nav biome zombies diversity
+
+2022-03-26 - v0.1
+- Initial beta release
 
 Here They Come: An immersive horde event experience!
 
