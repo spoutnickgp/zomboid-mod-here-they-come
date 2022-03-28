@@ -2,6 +2,9 @@ CHANGELOG:
 
 2022-03-28 - v0.2.1
 - Wake sleeping players on horde start
+- Improve sound effects on wave start
+- Fix ambient sounds not triggering properly
+- Fix errors on UI image sequence missload
 
 2022-03-27 - v0.2.0
 - New display icon for horde status
