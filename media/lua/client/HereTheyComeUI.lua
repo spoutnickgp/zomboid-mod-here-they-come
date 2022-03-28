@@ -170,7 +170,6 @@ end
 if isServer() == false then
     print("Loading Here They Come client module hooks (client_mode: "..tostring(isClient())..")...")
     Events.OnGameStart.Add(HTC_ClientSetup);
-    Events.OnGameStart.Add(HTC_IndicatorInitialise);
     Events.EveryOneMinute.Add(HTC_IndicatorUpdate);
     if isClient() == false then
         Events.OnClientCommand.Add(HTC_onClientCommand);
