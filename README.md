@@ -1,12 +1,15 @@
 CHANGELOG:
 
-2022-03-27 - v0.2
+2022-03-28 - v0.2.1
+- Wake sleeping players on horde start
+
+2022-03-27 - v0.2.0
 - New display icon for horde status
 - Fix horde size increment calculation
 - Adjust default time frame
 - Increase nav biome zombies diversity
 
-2022-03-26 - v0.1
+2022-03-26 - v0.1.0
 - Initial beta release
 
 Here They Come: An immersive horde event experience!
