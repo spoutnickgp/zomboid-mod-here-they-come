@@ -1,9 +1,9 @@
-local SOUND_OFFSET_RANGE = 50
+local SOUND_OFFSET_RANGE = 100
 local NUM_TEXT_LINES = 3
-local SAFE_DISPLAY_THRESHOLD = 20
-local WARNING_DISPLAY_THRESHOLD = 80
+local SAFE_DISPLAY_THRESHOLD = 50
+local WARNING_DISPLAY_THRESHOLD = 75
 
-local function HTC_ClientSetup()
+local function HTC_UISetup()
     print("Setup Client Defaults for Horde Mode")
     if getPlayer() == nil then
         return
@@ -21,6 +21,10 @@ local function HTC_ClientSetup()
     getPlayer():getModData().HTC_Indicator_Active = HTC_IndicatorNew(getCore():getScreenWidth() - 210, 12, 32, 32, Texture.getSharedTexture("media/ui/HTC_active_horde.png"));
     getPlayer():getModData().HTC_Indicator_Barred = HTC_IndicatorNew(getCore():getScreenWidth() - 210, 12, 32, 32, Texture.getSharedTexture("media/ui/HTC_barred_horde.png"));
     HTC_IndicatorUpdate();
+    getSoundManager():CacheSound("EventTrigger01")
+    getSoundManager():CacheSound("EventTrigger02")
+    getSoundManager():CacheSound("EventTrigger03")
+    getSoundManager():CacheSound("WaveStart")
 end
 
 function HTC_IndicatorNew(x, y, width, height, texture)
@@ -36,10 +40,16 @@ function HTC_IndicatorUpdate()
     if getPlayer() == nil then
         return
     end
+
     local safe_indicator = getPlayer():getModData().HTC_Indicator_Safe;
     local warning_indicator = getPlayer():getModData().HTC_Indicator_Warning;
     local active_indicator = getPlayer():getModData().HTC_Indicator_Active;
     local barred_indicator = getPlayer():getModData().HTC_Indicator_Barred;
+
+    if safe_indicator == nil or warning_indicator == nil or active_indicator == nil or barred_indicator == nil then
+        HTC_UISetup()
+        return
+    end
 
     if SandboxVars.HereTheyCome.HordeProgressIndicator == false then
         active_indicator.image:setVisible(false);
@@ -56,12 +66,14 @@ function HTC_IndicatorUpdate()
     else
         active_indicator.image:setVisible(false);
         if getPlayer():getModData().HTC_HordeProgress ~= nil then
-            if getPlayer():getModData().HTC_HordeProgress >= SAFE_DISPLAY_THRESHOLD then
+            if getPlayer():getModData().HTC_HordeTime == false then
+                barred_indicator.image:setVisible(true)
+            else
+                barred_indicator.image:setVisible(false)
+            end
+            if getPlayer():getModData().HTC_HordeProgress < SAFE_DISPLAY_THRESHOLD then
                 safe_indicator.image:setVisible(true);
                 warning_indicator.image:setVisible(false);
-                if getPlayer():getModData().HTC_HordeTime == false then
-                    barred_indicator.image:setVisible(true)
-                end
             end
             if getPlayer():getModData().HTC_HordeProgress >= WARNING_DISPLAY_THRESHOLD then
                 safe_indicator.image:setVisible(false);
@@ -104,7 +116,15 @@ local function HTC_playWarningSound(angle, variation)
     local soundOrigin = HTC_getPointOnCircle(getPlayer():getX(), getPlayer():getY(), angle, SOUND_OFFSET_RANGE)
     local originSquare = getWorld():getCell():getGridSquare(soundOrigin.x, soundOrigin.y, 0)
     if originSquare ~= nil then
-        getAmbientStreamManager():addAmbient("EventTrigger0"..tostring(variation), soundOrigin.x, soundOrigin.y, 0, 100.0)
+        getSoundManager():PlayWorldSound("EventTrigger0"..tostring(variation), originSquare, 1, 10, 2, true)
+    end
+end
+
+local function HTC_playWaveStart(angle, _)
+    local soundOrigin = HTC_getPointOnCircle(getPlayer():getX(), getPlayer():getY(), angle, SOUND_OFFSET_RANGE)
+    local originSquare = getWorld():getCell():getGridSquare(soundOrigin.x, soundOrigin.y, 0)
+    if originSquare ~= nil then
+        getSoundManager():PlayWorldSound("WaveStart", originSquare, 1, 10, 2, true)
     end
 end
 
@@ -121,6 +141,7 @@ local function HTC_onCommand(module, command, args)
     if command == "HTCHordeStart" then
         getPlayer():getModData().HTC_HordeState = true
         local variation = ZombRand(NUM_TEXT_LINES) + 1
+        HTC_playWaveStart(args["angle"], variation)
         if args["wave_number"] == 1 then
             HTC_displayStartText(0)
         else
@@ -137,7 +158,6 @@ local function HTC_onCommand(module, command, args)
     if command == "HTCHordeState" then
         getPlayer():getModData().HTC_HordeState = args["is_active"]
         getPlayer():getModData().HTC_HordeTime = args["is_possible"]
-        --print("Horde State="..tostring(getPlayer():getModData().HTC_HordeState)..", progress=" .. tostring(args["progress"]) .. "/" .. tostring(args["threshold"]))
         getPlayer():getModData().HTC_HordeProgress = args["progress"] / math.max(1, args["threshold"]) * 100
         HTC_IndicatorUpdate()
     end
@@ -169,7 +189,7 @@ end
 
 if isServer() == false then
     print("Loading Here They Come client module hooks (client_mode: "..tostring(isClient())..")...")
-    Events.OnGameStart.Add(HTC_ClientSetup);
+    Events.OnCreateUI.Add(HTC_UISetup);
     Events.EveryOneMinute.Add(HTC_IndicatorUpdate);
     if isClient() == false then
         Events.OnClientCommand.Add(HTC_onClientCommand);

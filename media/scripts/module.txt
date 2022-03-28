@@ -11,7 +11,7 @@ module HereTheyCome {
             file = media/sound/event_sound_01.wav,
             distanceMin = 0,
 			distanceMax = 200,
-			reverbMaxRange = 0,
+			reverbMaxRange = 200,
 			reverbFactor = 0,
 			volume = 1.0,
         }
@@ -25,7 +25,7 @@ module HereTheyCome {
             file = media/sound/event_sound_02.wav,
             distanceMin = 0,
 			distanceMax = 200,
-			reverbMaxRange = 0,
+			reverbMaxRange = 200,
 			reverbFactor = 0,
 			volume = 1.0,
         }
@@ -39,9 +39,24 @@ module HereTheyCome {
             file = media/sound/event_sound_03.wav,
             distanceMin = 0,
 			distanceMax = 200,
-			reverbMaxRange = 0,
+			reverbMaxRange = 200,
 			reverbFactor = 0,
 			volume = 1.0,
         }
     }
+
+    sound WaveStart
+    {
+        category = World,
+        clip
+        {
+            file = media/sound/wave_sound_01.wav,
+            distanceMin = 0,
+			distanceMax = 200,
+			reverbMaxRange = 200,
+			reverbFactor = 0,
+			volume = 1.0,
+        }
+    }
+
 }
