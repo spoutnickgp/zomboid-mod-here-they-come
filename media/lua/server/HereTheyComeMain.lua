@@ -70,6 +70,10 @@ local function HTC_isWithinHordeTime()
     return false
 end
 
+local function HTC_wakePlayer(player, data)
+    player:forceAwake()
+end
+
 local function HTC_isHordeCooldown(last_end_time)
     if last_end_time == nil then
         return false
@@ -152,6 +156,7 @@ function HTC_startHorde(data)
     data.HordeActive = true;
     data.HordeWave = 1;
 
+    HTC_callForEachPlayer(HTC_wakePlayer, data)
     HTC_callForEachPlayer(HTC_startHordeForPlayer, data)
 end
 
