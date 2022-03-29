@@ -192,30 +192,20 @@ local function HTC_pulseOnPlayer(player, _)
     end
 end
 
-local function HTC_warmupWaveForPlayer(player, _)
-    player:getModData().remainingZombies = 0
-end
-
-local function HTC_startWaveForPlayer(player, data)
-    local minZombies = SandboxVars.HereTheyCome.HordeWaveMinZombieCount + SandboxVars.HereTheyCome.HordeZombieIncrement * data.HordeNumber
-    local addedZombies = data.HordeIntensity / 100 * math.abs(SandboxVars.HereTheyCome.HordeWaveMaxZombieCount - minZombies)
-    player:getModData().remainingZombies = minZombies + addedZombies
-    HTC_sendStartToPlayer(player, data)
-end
-
 local function HTC_tickWaveForPlayer(player, data)
     local minSpawnRange = SandboxVars.HereTheyCome.HordeMinSpawnDistance
     local maxSpawnRange = SandboxVars.HereTheyCome.HordeMaxSpawnDistance
 
-    if player:getModData().remainingZombies ~= nil and player:getModData().remainingZombies > 0 then
+    if data.WaveRemainingZombies ~= nil and data.WaveRemainingZombies > 0 then
         if data.WaveTick % SandboxVars.HereTheyCome.HordeWaveBatchTicks == 0 then
+            local spawnBatchSize = math.min(data.WaveRemainingZombies, SandboxVars.HereTheyCome.HordeWaveBatchSize)
             local spawnedZombies = HTC_spawnZombiesForPlayer(player,
                     data.HordeAngle,
                     minSpawnRange,
                     maxSpawnRange,
-                    math.min(player:getModData().remainingZombies, SandboxVars.HereTheyCome.HordeWaveBatchSize),
+                    spawnBatchSize,
                     HTC_SPAWN_CONFIGS)
-            player:getModData().remainingZombies = player:getModData().remainingZombies - spawnedZombies
+            data.WaveRemainingZombies = data.WaveRemainingZombies - spawnedZombies
         end
     end
 end
@@ -225,20 +215,30 @@ local function HTC_CheckHordeStatus()
     if data.HordeActive == true then
         if data.HordeWave <= SandboxVars.HereTheyCome.HordeNumWaves then
             local now = HTC_getHoursSinceGameStart() * 60
+            -- Initially, start with warning warmup mode (no spawning)
             if data.HordeWarmup then
-                HTC_callForEachPlayer(HTC_warmupWaveForPlayer, data)
+                data.WaveRemainingZombies = 0
                 if data.CurrentHordeStartTime + SandboxVars.HereTheyCome.HordeWarnTime <= now then
                     data.HordeWarmup = false
                     data.CurrentWaveStartTime = now - SandboxVars.HereTheyCome.TimeBetweenWaves
                     data.CurrentPulseStartTime = now - SandboxVars.HereTheyCome.TimeBetweenPulses
                 end
             else
-                if data.CurrentWaveStartTime + SandboxVars.HereTheyCome.TimeBetweenWaves <= now then
+                -- Checks whether we need to start a new wave
+                if data.CurrentWaveStartTime + SandboxVars.HereTheyCome.TimeBetweenWaves <= now and data.WaveRemainingZombies <= 0 then
+                    local minZombies = SandboxVars.HereTheyCome.HordeWaveMinZombieCount + SandboxVars.HereTheyCome.HordeZombieIncrement * data.HordeNumber
+                    local addedZombies = data.HordeIntensity / 100 * math.abs(SandboxVars.HereTheyCome.HordeWaveMaxZombieCount - minZombies)
+                    -- Total Number of player is the minimal amount plus the variable amount times the amount of players
+                    data.WaveRemainingZombies = (minZombies + addedZombies) * HTC_getNumPlayers();
+                    print("Starting wave of "..tostring(data.WaveRemainingZombies).." zombies")
+                    -- Store the start time of the wave to wait for its duration
                     data.CurrentWaveStartTime = now
-                    -- Exception for last wave
+
+                    -- Exception for last wave, otherwise send start wave event to players
                     if data.HordeWave ~= SandboxVars.HereTheyCome.HordeNumWaves then
-                        HTC_callForEachPlayer(HTC_startWaveForPlayer, data)
+                        HTC_callForEachPlayer(HTC_sendStartToPlayer, data)
                     end
+                    -- Increment the wave
                     data.HordeWave = data.HordeWave + 1
                     data.WaveTick = 0
                 else
@@ -257,7 +257,7 @@ local function HTC_CheckHordeStatus()
 end
 
 if isClient() == false then
-    print("Loading Here They Come server module hooks (server_mode: " .. tostring(isServer()) .. ")...")
+    print("Loading Here They Come server module hooks (server_mode=" .. tostring(isServer()) .. ")...")
     Events.OnGameStart.Add(HTC_ServerSetup);
     Events.OnGameTimeLoaded.Add(HTC_ServerSetup);
     Events.EveryOneMinute.Add(HTC_HordeProgress);

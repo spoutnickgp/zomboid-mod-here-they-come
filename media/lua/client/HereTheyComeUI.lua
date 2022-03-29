@@ -188,7 +188,7 @@ end
 --end
 
 if isServer() == false then
-    print("Loading Here They Come client module hooks (client_mode: "..tostring(isClient())..")...")
+    print("Loading Here They Come client module hooks (client_mode="..tostring(isClient())..")...")
     Events.OnCreateUI.Add(HTC_UISetup);
     Events.EveryOneMinute.Add(HTC_IndicatorUpdate);
     if isClient() == false then
