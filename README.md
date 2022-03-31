@@ -1,5 +1,10 @@
 CHANGELOG:
 
+2022-03-31 - v0.3.0
+- Fix wave spacing not waiting for wave to finish spawning
+- Fix north/south inversion
+- Reduce defaults spawn range
+
 2022-03-28 - v0.2.1
 - Wake sleeping players on horde start
 - Improve sound effects on wave start
