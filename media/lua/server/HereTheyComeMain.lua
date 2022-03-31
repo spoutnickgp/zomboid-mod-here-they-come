@@ -205,6 +205,7 @@ local function HTC_tickWaveForPlayer(player, data)
                     maxSpawnRange,
                     spawnBatchSize,
                     HTC_SPAWN_CONFIGS)
+            HTC_pulseOnPlayer(player, data)
             data.WaveRemainingZombies = data.WaveRemainingZombies - spawnedZombies
         end
     end
