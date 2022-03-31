@@ -4,13 +4,13 @@ IGUI_EN = {
     IGUI_PlayerText_HTCWarmupReactionPre_03 = "What the??! What's happening towards the ",
 
     IGUI_PlayerText_HTCDirection_0 = "East"
-    IGUI_PlayerText_HTCDirection_1 = "North-East"
-    IGUI_PlayerText_HTCDirection_2 = "North"
-    IGUI_PlayerText_HTCDirection_3 = "North-West"
+    IGUI_PlayerText_HTCDirection_1 = "South-East"
+    IGUI_PlayerText_HTCDirection_2 = "South"
+    IGUI_PlayerText_HTCDirection_3 = "South-West"
     IGUI_PlayerText_HTCDirection_4 = "West"
-    IGUI_PlayerText_HTCDirection_5 = "South-West"
-    IGUI_PlayerText_HTCDirection_6 = "South"
-    IGUI_PlayerText_HTCDirection_7 = "South-East"
+    IGUI_PlayerText_HTCDirection_5 = "North-West"
+    IGUI_PlayerText_HTCDirection_6 = "North"
+    IGUI_PlayerText_HTCDirection_7 = "North-East"
 
     IGUI_PlayerText_HTCWarmupReactionPost_01 = ". Gotta get out of here!",
     IGUI_PlayerText_HTCWarmupReactionPost_02 = ". No time to waste, let's run!",
