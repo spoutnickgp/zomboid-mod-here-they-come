@@ -1,26 +1,4 @@
-CHANGELOG:
-
-2022-03-31 - v0.3.0
-- Fix wave spacing not waiting for wave to finish spawning
-- Fix north/south inversion
-- Reduce defaults spawn range
-
-2022-03-28 - v0.2.1
-- Wake sleeping players on horde start
-- Improve sound effects on wave start
-- Fix ambient sounds not triggering properly
-- Fix errors on UI image sequence missload
-
-2022-03-27 - v0.2.0
-- New display icon for horde status
-- Fix horde size increment calculation
-- Adjust default time frame
-- Increase nav biome zombies diversity
-
-2022-03-26 - v0.1.0
-- Initial beta release
-
-Here They Come: An immersive horde event experience!
+Here They Come (beta): An immersive horde event experience!
 
 What does it do?
 This mod introduces horde events to Zomboid! These events are meant to remain immersive, and highly configurable.
@@ -69,3 +47,25 @@ Is it safe to add to an existing save?
 Yes.
 
 Mod by SpoutNick, code available on github: https://github.com/spoutnickgp/zomboid-mod-here-they-come
+
+CHANGELOG:
+
+2022-04-01 - v0.3.0
+- Fix wave spacing not waiting for wave to finish spawning
+- Fix north/south inversion
+- Reduce defaults spawn range
+
+2022-03-28 - v0.2.1
+- Wake sleeping players on horde start
+- Improve sound effects on wave start
+- Fix ambient sounds not triggering properly
+- Fix errors on UI image sequence missload
+
+2022-03-27 - v0.2.0
+- New display icon for horde status
+- Fix horde size increment calculation
+- Adjust default time frame
+- Increase nav biome zombies diversity
+
+2022-03-26 - v0.1.0
+- Initial beta release
