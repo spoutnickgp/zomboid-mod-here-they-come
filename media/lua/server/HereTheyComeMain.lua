@@ -57,13 +57,17 @@ local function HTC_unicastCommand(player, module, command, params)
     HTC_sendCommand(player, module, command, params)
 end
 
+local function hour_is_between(hour,min,max)
+    return (hour >= min and hour <= max)
+end
+
 local function HTC_isWithinHordeTime()
     local age = HTC_getDaysSinceGameStart()
     local day = math.floor(age)
     local hourOfDay = getGameTime():getHour() % 24
 
     if day >= SandboxVars.HereTheyCome.HordeFirstDay then
-        if hourOfDay >= SandboxVars.HereTheyCome.HordeMinHour and hourOfDay <= SandboxVars.HereTheyCome.HordeMaxHour then
+        if hour_is_between(hourOfDay, SandboxVars.HereTheyCome.HordeMinHour, SandboxVars.HereTheyCome.HordeMaxHour) then
             return true
         end
     end

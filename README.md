@@ -50,6 +50,11 @@ Mod by SpoutNick, code available on github: https://github.com/spoutnickgp/zombo
 
 CHANGELOG:
 
+222-05-28 - v0.3.1
+- Tweaked zombie diversity to reduce army presence in some vegetation biomes
+- Switch to new logo by M1NH4U
+- Add documentation by M1NH4U
+
 2022-04-01 - v0.3.0
 - Fix wave spacing not waiting for wave to finish spawning
 - Fix north/south inversion
