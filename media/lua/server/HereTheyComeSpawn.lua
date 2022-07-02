@@ -24,9 +24,15 @@ function HTC_spawnZombiesForPlayer(player, baseAngle, minSpawnRange, maxSpawnRan
         if spawnSpace ~= nil then
             local isSafehouse = SafeHouse.getSafeHouse(spawnSpace);
             if spawnSpace:isSafeToSpawn() and spawnSpace:isOutside() and isSafehouse == nil and spawnCount < numZombies then
-                local selectedOutfits = HTC_getSpawnOutfit(spawnLocationX, spawnLocationY, available_outfits)
-                local outfit = selectedOutfits[ZombRand(#selectedOutfits) + 1]
-                print("Spawning zombie of type "..outfit.." at location "..tostring(spawnLocationX)..", "..tostring(spawnLocationY))
+                -- nil outfit will have PZ decide outfit based on default built-in distributions
+                local outfit = nil
+                if ZombRand(100) <= SandboxVars.HereTheyCome.UniqueZombies then
+                    local selectedOutfits = HTC_getSpawnOutfit(spawnLocationX, spawnLocationY, available_outfits)
+                    outfit = selectedOutfits[ZombRand(#selectedOutfits) + 1]
+                    -- print("Spawning zombie of type "..outfit.." at location "..tostring(spawnLocationX)..", "..tostring(spawnLocationY))
+                else 
+                    -- print("Spawning zombie of type [default] at location "..tostring(spawnLocationX)..", "..tostring(spawnLocationY))
+                end
                 local zombies = HTC_spawnZombieAt(spawnLocationX, spawnLocationY, outfit)
                 for i = 1, zombies:size() do
                     local zombie = zombies:get(i - 1)

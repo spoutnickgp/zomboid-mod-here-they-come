@@ -70,6 +70,16 @@ option HereTheyCome.HordeFirstDay
 	translation = HereTheyCome_HordeFirstDay,
 }
 
+option HereTheyCome.UniqueZombies
+{
+	type = integer,
+	min = 0,
+	max = 100,
+	default = 50,
+	page = HereTheyCome,
+	translation = HereTheyCome_UniqueZombies,
+}
+
 option HereTheyCome.HordeNumWaves
 {
 	type = integer,
