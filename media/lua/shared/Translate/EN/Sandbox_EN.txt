@@ -21,6 +21,9 @@ Sandbox_EN = {
 	Sandbox_HereTheyCome_HordeFirstDay = "First day"
 	Sandbox_HereTheyCome_HordeFirstDay_tooltip = "First day at which a horde may appear"
 
+	Sandbox_HereTheyCome_UniqueZombies = "Unique Zombie percentage"
+	Sandbox_HereTheyCome_UniqueZombies_tooltip = "Percentage of the horde that will consist of unique, non-generic zombies"
+
     Sandbox_HereTheyCome_HordeNumWaves = "Number of waves"
     Sandbox_HereTheyCome_HordeNumWaves_tooltip = "Number of zombie waves per horde"
 
